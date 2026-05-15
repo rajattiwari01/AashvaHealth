@@ -1,0 +1,3006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Aashva Health – Your Friend in Mental Wellness | A SALP Creation</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=Caveat:wght@500;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --crimson: #C0392B;
+    --crimson-light: #E74C3C;
+    --crimson-pale: #FDECEA;
+    --sage: #52B788;
+    --sage-light: #74C69D;
+    --sage-pale: #D8F3DC;
+    --sage-deep: #2D6A4F;
+    --cream: #FFFBF5;
+    --warm-white: #FFF9F0;
+    --ink: #1A0A00;
+    --charcoal: #3D2B1F;
+    --muted: #7A6055;
+    --border: rgba(192,57,43,0.12);
+    --shadow-red: rgba(192,57,43,0.18);
+    --shadow-green: rgba(82,183,136,0.18);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw;
+    height: 68px;
+    background: rgba(255,251,245,0.96);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow .3s, background .3s;
+  }
+  nav.scrolled {
+    box-shadow: 0 2px 24px rgba(192,57,43,.10);
+    background: rgba(255,251,245,0.99);
+  }
+
+  /* Logo */
+  .logo {
+    display: flex; align-items: center; gap: 10px; text-decoration: none;
+    flex-shrink: 0;
+  }
+  .logo-icon {
+    width: 38px; height: 38px; border-radius: 12px;
+    background: linear-gradient(135deg, var(--crimson) 0%, var(--sage) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; color: #fff; font-weight: 800;
+    box-shadow: 0 3px 12px var(--shadow-red);
+    letter-spacing: -1px;
+  }
+  .logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700;
+    color: var(--ink); letter-spacing: -0.3px; line-height: 1;
+  }
+  .logo-sub {
+    font-size: 8.5px; color: var(--sage-deep);
+    font-weight: 600; letter-spacing: 1.8px;
+    text-transform: uppercase; display: block;
+    margin-top: 2px; opacity: .7;
+  }
+
+  /* Centre pill nav */
+  .nav-center {
+    display: flex; align-items: center; gap: 2px;
+    background: rgba(61,43,31,.05);
+    border-radius: 100px;
+    padding: 5px 6px;
+    border: 1px solid var(--border);
+  }
+  .nav-center a {
+    text-decoration: none; color: var(--muted);
+    font-size: 13px; font-weight: 500;
+    padding: 7px 14px; border-radius: 100px;
+    transition: all .2s; white-space: nowrap;
+    position: relative;
+  }
+  .nav-center a:hover { color: var(--charcoal); background: rgba(255,255,255,.7); }
+  .nav-center a.nav-active { color: var(--crimson); background: #fff; box-shadow: 0 1px 8px var(--shadow-red); font-weight: 600; }
+
+  /* Test pill — special highlight */
+  .nav-test-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: linear-gradient(135deg, var(--sage-pale), #eaffee) !important;
+    color: var(--sage-deep) !important;
+    border: 1px solid rgba(82,183,136,.3);
+    font-weight: 600 !important;
+  }
+  .nav-test-pill:hover { background: var(--sage-pale) !important; box-shadow: 0 2px 10px var(--shadow-green) !important; }
+  .nav-test-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--sage); display: inline-block;
+    animation: pulse 2s infinite;
+  }
+
+  /* Right actions */
+  .nav-right { display: flex; align-items: center; gap: 10px; }
+  .nav-cta {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--crimson);
+    color: #fff !important;
+    padding: 9px 20px;
+    border-radius: 100px;
+    font-weight: 600; font-size: 13px;
+    transition: all .2s;
+    box-shadow: 0 3px 14px var(--shadow-red);
+    text-decoration: none; white-space: nowrap;
+  }
+  .nav-cta:hover {
+    background: var(--crimson-light);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px var(--shadow-red);
+  }
+  .nav-cta-icon { font-size: 15px; }
+
+  /* Hamburger */
+  .nav-hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; padding: 6px; border: none; background: none;
+  }
+  .nav-hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--charcoal); border-radius: 2px;
+    transition: all .3s;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile drawer */
+  .nav-drawer {
+    display: none; position: fixed;
+    top: 68px; left: 0; right: 0;
+    background: rgba(255,251,245,0.98);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 5vw 24px;
+    flex-direction: column; gap: 4px;
+    z-index: 999;
+    box-shadow: 0 8px 30px rgba(26,10,0,.08);
+  }
+  .nav-drawer.open { display: flex; animation: fadeUp .2s ease both; }
+  .nav-drawer a {
+    text-decoration: none; color: var(--charcoal);
+    font-size: 15px; font-weight: 500;
+    padding: 12px 16px; border-radius: 12px;
+    transition: all .2s;
+  }
+  .nav-drawer a:hover { background: var(--crimson-pale); color: var(--crimson); }
+  .nav-drawer .drawer-test {
+    background: var(--sage-pale); color: var(--sage-deep) !important;
+    font-weight: 600;
+  }
+  .nav-drawer .drawer-cta {
+    background: var(--crimson); color: #fff !important;
+    text-align: center; border-radius: 100px; margin-top: 8px;
+    font-weight: 600;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 100px 5vw 60px;
+    position: relative;
+    overflow: hidden;
+    background: var(--warm-white);
+  }
+
+  .hero-bg-blob {
+    position: absolute; border-radius: 50%; filter: blur(80px); opacity: .35;
+    pointer-events: none;
+  }
+  .blob1 { width: 600px; height: 600px; background: var(--crimson-pale); top: -100px; right: -150px; }
+  .blob2 { width: 400px; height: 400px; background: var(--sage-pale); bottom: -80px; left: -80px; }
+  .blob3 { width: 200px; height: 200px; background: var(--sage-pale); top: 30%; right: 10%; }
+
+  .hero-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    align-items: center; position: relative; z-index: 2;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--sage-pale); color: var(--sage-deep);
+    border: 1px solid var(--sage-light);
+    border-radius: 100px; padding: 8px 18px;
+    font-size: 13px; font-weight: 600;
+    margin-bottom: 24px;
+    animation: fadeUp .7s ease both;
+  }
+  .badge-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--sage);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.4); opacity: .6; }
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 5vw, 64px);
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 22px;
+    animation: fadeUp .8s .1s ease both;
+  }
+  .hero-title span.red { color: var(--crimson); }
+  .hero-title span.green { color: var(--sage-deep); }
+  .hero-title em {
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .hero-sub {
+    font-size: 17px; line-height: 1.7;
+    color: var(--muted); max-width: 480px;
+    margin-bottom: 36px;
+    animation: fadeUp .8s .2s ease both;
+  }
+
+  .hero-actions {
+    display: flex; gap: 14px; flex-wrap: wrap;
+    animation: fadeUp .8s .3s ease both;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--crimson);
+    color: #fff; padding: 16px 30px;
+    border-radius: 100px; font-weight: 600; font-size: 15px;
+    text-decoration: none;
+    box-shadow: 0 6px 24px var(--shadow-red);
+    transition: all .25s;
+  }
+  .btn-primary:hover { background: var(--crimson-light); transform: translateY(-2px); box-shadow: 0 10px 32px var(--shadow-red); }
+  .btn-primary .btn-icon { font-size: 20px; }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: transparent;
+    color: var(--charcoal); padding: 16px 28px;
+    border-radius: 100px; font-weight: 500; font-size: 15px;
+    text-decoration: none;
+    border: 1.5px solid var(--border);
+    transition: all .25s;
+  }
+  .btn-secondary:hover { border-color: var(--sage); color: var(--sage-deep); background: var(--sage-pale); }
+
+  .hero-trust {
+    display: flex; align-items: center; gap: 14px;
+    margin-top: 36px;
+    animation: fadeUp .8s .4s ease both;
+  }
+  .trust-avatars { display: flex; }
+  .trust-avatars span {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 2px solid var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    background: linear-gradient(135deg, var(--crimson-pale), var(--sage-pale));
+    margin-left: -10px;
+  }
+  .trust-avatars span:first-child { margin-left: 0; }
+  .trust-text { font-size: 13px; color: var(--muted); line-height: 1.4; }
+  .trust-text strong { color: var(--sage-deep); }
+
+  /* Hero card */
+  .hero-card-wrap {
+    animation: fadeUp .9s .15s ease both;
+    position: relative;
+  }
+  .hero-card {
+    background: #fff;
+    border-radius: 28px;
+    padding: 32px;
+    box-shadow: 0 20px 70px rgba(26,10,0,.1), 0 4px 20px var(--shadow-red);
+    position: relative; overflow: hidden;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--crimson), var(--sage));
+  }
+  .card-emoji { font-size: 48px; margin-bottom: 16px; display: block; }
+  .card-quote {
+    font-family: 'Caveat', cursive;
+    font-size: 26px; line-height: 1.4;
+    color: var(--charcoal);
+    margin-bottom: 20px;
+  }
+  .card-steps { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .card-steps li {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 14px; color: var(--charcoal);
+  }
+  .step-num {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--crimson); color: #fff;
+    font-size: 12px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .card-cta-strip {
+    margin-top: 24px; padding: 16px;
+    background: var(--sage-pale); border-radius: 16px;
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+  .card-cta-strip:hover { background: #c8eed8; }
+  .wa-icon { font-size: 28px; }
+  .wa-text strong { display: block; font-size: 14px; color: var(--sage-deep); font-weight: 600; }
+  .wa-text span { font-size: 12px; color: var(--muted); }
+
+  /* ── FLOATING FREE TAG ── */
+  .free-tag {
+    position: absolute; top: -18px; right: 24px;
+    background: var(--crimson);
+    color: #fff; padding: 8px 18px;
+    border-radius: 100px; font-size: 13px; font-weight: 700;
+    box-shadow: 0 4px 16px var(--shadow-red);
+    transform: rotate(2deg);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 90px 5vw; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    display: inline-block;
+    font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--crimson);
+    margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.5vw, 46px);
+    line-height: 1.2; margin-bottom: 18px;
+  }
+  .section-sub {
+    font-size: 16px; color: var(--muted); line-height: 1.7;
+    max-width: 580px; margin-bottom: 50px;
+  }
+  .green { color: var(--sage-deep); }
+  .red { color: var(--crimson); }
+
+  /* ── WHY MENTAL HEALTH ── */
+  #why { background: var(--ink); color: var(--cream); }
+  #why .section-label { color: var(--sage-light); }
+  #why .section-title { color: var(--cream); }
+  #why .section-sub { color: rgba(255,251,245,.65); max-width: 600px; }
+
+  .why-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    margin-top: 50px;
+  }
+  .why-card {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 22px; padding: 28px;
+    transition: transform .3s, background .3s, border .3s;
+    position: relative; overflow: hidden;
+  }
+  .why-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--crimson), var(--sage));
+    opacity: 0; transition: opacity .3s;
+  }
+  .why-card:hover { transform: translateY(-6px); background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.2); }
+  .why-card:hover::after { opacity: 1; }
+  .why-icon { font-size: 36px; margin-bottom: 16px; display: block; }
+  .why-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 10px; color: #fff; }
+  .why-card p { font-size: 14px; line-height: 1.7; color: rgba(255,251,245,.65); }
+
+  /* ── STATS STRIP ── */
+  .stats-strip {
+    background: linear-gradient(135deg, var(--crimson) 0%, #8B0000 100%);
+    padding: 50px 5vw;
+  }
+  .stats-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px;
+    align-items: center;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px; font-weight: 900; color: #fff; line-height: 1;
+    display: block;
+  }
+  .stat-label { font-size: 13px; color: rgba(255,255,255,.75); margin-top: 6px; }
+
+  /* ── CAREER SECTION ── */
+  #career { background: var(--warm-white); }
+  .career-split {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center;
+  }
+  .career-visual {
+    position: relative;
+  }
+  .career-chart {
+    background: #fff; border-radius: 24px;
+    padding: 30px; box-shadow: 0 16px 60px rgba(26,10,0,.08);
+  }
+  .chart-label { font-size: 13px; color: var(--muted); margin-bottom: 20px; font-weight: 500; }
+  .chart-bars { display: flex; gap: 10px; align-items: flex-end; height: 160px; }
+  .bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .bar {
+    width: 100%; border-radius: 8px 8px 0 0;
+    transition: height .5s ease;
+  }
+  .bar.red-bar { background: linear-gradient(180deg, var(--crimson-light), var(--crimson)); }
+  .bar.green-bar { background: linear-gradient(180deg, var(--sage-light), var(--sage)); }
+  .bar-lbl { font-size: 11px; color: var(--muted); text-align: center; }
+
+  .career-arrow {
+    position: absolute; top: -20px; right: -20px;
+    background: var(--sage); color: #fff;
+    border-radius: 50%; width: 56px; height: 56px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; box-shadow: 0 6px 20px var(--shadow-green);
+    animation: bob 2.5s ease-in-out infinite;
+  }
+  @keyframes bob {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .career-points { list-style: none; display: flex; flex-direction: column; gap: 18px; margin-top: 36px; }
+  .career-points li {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 16px; background: #fff; border-radius: 14px;
+    border: 1px solid var(--border);
+    transition: box-shadow .2s;
+  }
+  .career-points li:hover { box-shadow: 0 6px 24px var(--shadow-green); border-color: var(--sage-light); }
+  .cp-icon { font-size: 22px; flex-shrink: 0; }
+  .cp-text strong { display: block; font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+  .cp-text span { font-size: 13px; color: var(--muted); }
+
+  /* ── RESOURCES ── */
+  #resources { background: #fff; }
+  .resources-tabs {
+    display: flex; gap: 10px; margin-bottom: 40px;
+  }
+  .tab-btn {
+    padding: 10px 22px; border-radius: 100px;
+    border: 1.5px solid var(--border);
+    font-size: 14px; font-weight: 500; cursor: pointer;
+    background: transparent; color: var(--charcoal);
+    transition: all .2s;
+  }
+  .tab-btn.active { background: var(--crimson); color: #fff; border-color: var(--crimson); }
+  .tab-btn:hover:not(.active) { border-color: var(--sage); color: var(--sage-deep); }
+
+  .resources-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+  }
+  .resource-card {
+    border-radius: 18px; overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform .25s, box-shadow .25s;
+    text-decoration: none; color: inherit; display: block;
+  }
+  .resource-card:hover { transform: translateY(-5px); box-shadow: 0 14px 40px var(--shadow-red); }
+  .resource-thumb {
+    height: 140px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 52px; position: relative;
+  }
+  .resource-thumb.book { background: linear-gradient(135deg, var(--crimson-pale), #fff); }
+  .resource-thumb.video { background: linear-gradient(135deg, var(--sage-pale), #fff); }
+  .res-play {
+    position: absolute; bottom: 10px; right: 10px;
+    background: var(--sage); color: #fff;
+    border-radius: 50%; width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+  }
+  .resource-body { padding: 16px 18px; }
+  .resource-type {
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--crimson); margin-bottom: 6px;
+  }
+  .resource-card.vid .resource-type { color: var(--sage-deep); }
+  .resource-title { font-size: 15px; font-weight: 600; line-height: 1.4; margin-bottom: 6px; }
+  .resource-author { font-size: 12px; color: var(--muted); }
+
+  /* ── PROFESSIONALS ── */
+  #professionals { background: var(--warm-white); }
+  .pro-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 50px;
+  }
+  .pro-card {
+    background: #fff; border-radius: 22px; padding: 30px;
+    border: 1px solid var(--border);
+    display: flex; gap: 20px; align-items: flex-start;
+    transition: all .25s;
+  }
+  .pro-card:hover { box-shadow: 0 10px 40px var(--shadow-green); border-color: var(--sage-light); transform: translateY(-4px); }
+  .pro-icon-wrap {
+    width: 52px; height: 52px; border-radius: 16px;
+    background: linear-gradient(135deg, var(--crimson-pale), var(--sage-pale));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; flex-shrink: 0;
+  }
+  .pro-content h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+  .pro-content p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  /* ── FRIEND THERAPIST ── */
+  #friend {
+    background: linear-gradient(160deg, var(--sage-deep) 0%, #1B4332 100%);
+    color: var(--cream);
+  }
+  #friend .section-label { color: var(--sage-light); }
+  #friend .section-title { color: #fff; }
+  #friend .section-sub { color: rgba(255,251,245,.75); }
+
+  .friend-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .friend-chat {
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 28px; padding: 28px;
+    backdrop-filter: blur(8px);
+  }
+  .chat-header {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 24px;
+    padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,.1);
+  }
+  .chat-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--crimson), var(--sage));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+  .chat-name { font-weight: 600; font-size: 15px; }
+  .chat-status { font-size: 12px; color: var(--sage-light); }
+  .chat-status::before { content: '●'; margin-right: 4px; }
+
+  .chat-messages { display: flex; flex-direction: column; gap: 12px; }
+  .msg {
+    max-width: 80%; padding: 12px 16px;
+    border-radius: 16px; font-size: 14px; line-height: 1.5;
+  }
+  .msg.them {
+    background: rgba(255,255,255,.12); color: rgba(255,251,245,.9);
+    border-radius: 4px 16px 16px 16px;
+    align-self: flex-start;
+  }
+  .msg.us {
+    background: var(--sage); color: #fff;
+    border-radius: 16px 4px 16px 16px;
+    align-self: flex-end;
+  }
+  .msg-time { font-size: 10px; color: rgba(255,255,255,.4); margin-top: 4px; }
+
+  .friend-points { list-style: none; display: flex; flex-direction: column; gap: 22px; }
+  .friend-points li { display: flex; gap: 16px; align-items: flex-start; }
+  .fp-icon {
+    width: 44px; height: 44px; border-radius: 14px;
+    background: rgba(255,255,255,.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .fp-text h4 { font-size: 16px; font-weight: 600; margin-bottom: 5px; }
+  .fp-text p { font-size: 13px; color: rgba(255,251,245,.65); line-height: 1.6; }
+
+  /* ── TRANSFORMATION ── */
+  #transform { background: #fff; }
+  .transform-timeline {
+    display: flex; position: relative; gap: 0;
+    margin-top: 60px;
+  }
+  .transform-timeline::before {
+    content: '';
+    position: absolute; top: 36px; left: 5%; right: 5%; height: 2px;
+    background: linear-gradient(90deg, var(--crimson), var(--sage));
+    z-index: 0;
+  }
+  .timeline-step {
+    flex: 1; display: flex; flex-direction: column; align-items: center;
+    text-align: center; padding: 0 14px;
+    position: relative; z-index: 1;
+  }
+  .tl-circle {
+    width: 72px; height: 72px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; margin-bottom: 18px;
+    border: 3px solid transparent;
+    background: #fff;
+    box-shadow: 0 4px 20px rgba(0,0,0,.1);
+    transition: transform .3s;
+  }
+  .tl-circle.from { border-color: var(--crimson); background: var(--crimson-pale); }
+  .tl-circle.mid { border-color: #d68f00; background: #fff8e6; }
+  .tl-circle.to { border-color: var(--sage); background: var(--sage-pale); }
+  .timeline-step:hover .tl-circle { transform: scale(1.12); }
+  .tl-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  .tl-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--warm-white);
+  }
+  .contact-split {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
+  }
+  .contact-info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3vw, 44px);
+    margin-bottom: 18px; line-height: 1.2;
+  }
+  .contact-info p {
+    color: var(--muted); font-size: 15px; line-height: 1.7; margin-bottom: 32px;
+  }
+  .contact-channels { display: flex; flex-direction: column; gap: 16px; }
+  .channel-card {
+    display: flex; align-items: center; gap: 16px;
+    background: #fff; border-radius: 16px; padding: 18px 22px;
+    border: 1px solid var(--border);
+    text-decoration: none; color: inherit;
+    transition: all .25s;
+  }
+  .channel-card:hover { box-shadow: 0 8px 30px var(--shadow-green); border-color: var(--sage-light); transform: translateX(6px); }
+  .ch-icon { font-size: 28px; }
+  .ch-label { font-size: 12px; color: var(--muted); }
+  .ch-val { font-size: 15px; font-weight: 600; color: var(--charcoal); }
+
+  .contact-form-wrap {
+    background: #fff; border-radius: 28px; padding: 40px;
+    box-shadow: 0 16px 60px rgba(26,10,0,.07);
+    border: 1px solid var(--border);
+  }
+  .form-title { font-size: 22px; font-weight: 700; margin-bottom: 24px; }
+  .form-group { margin-bottom: 18px; }
+  .form-group label {
+    display: block; font-size: 13px; font-weight: 500; color: var(--charcoal);
+    margin-bottom: 7px;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%; padding: 13px 16px;
+    border: 1.5px solid var(--border); border-radius: 12px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink);
+    background: var(--cream); outline: none;
+    transition: border .2s, box-shadow .2s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--sage); box-shadow: 0 0 0 3px rgba(82,183,136,.15);
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-submit {
+    width: 100%; padding: 16px; border-radius: 100px;
+    background: var(--crimson); color: #fff;
+    font-size: 16px; font-weight: 600; font-family: 'DM Sans', sans-serif;
+    border: none; cursor: pointer;
+    box-shadow: 0 6px 24px var(--shadow-red);
+    transition: all .25s;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+  }
+  .form-submit:hover { background: var(--crimson-light); transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink); color: rgba(255,251,245,.65);
+    padding: 60px 5vw 30px;
+  }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    margin-bottom: 30px;
+  }
+  .footer-brand .logo-text { color: #fff; }
+  .footer-brand p { font-size: 14px; line-height: 1.7; margin-top: 14px; color: rgba(255,251,245,.55); }
+  .footer-col h4 { color: #fff; font-size: 14px; font-weight: 600; margin-bottom: 16px; }
+  .footer-col a {
+    display: block; color: rgba(255,251,245,.55); font-size: 13px;
+    text-decoration: none; margin-bottom: 10px; transition: color .2s;
+  }
+  .footer-col a:hover { color: var(--sage-light); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; flex-wrap: wrap; gap: 12px;
+  }
+  .salp-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 100px; padding: 8px 18px;
+    font-size: 13px; color: rgba(255,251,245,.7);
+    text-decoration: none; transition: all .2s;
+  }
+  .salp-badge:hover { background: rgba(82,183,136,.15); border-color: var(--sage); color: var(--sage-light); }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── STICKY CTA ── */
+  .sticky-wa {
+    position: fixed; bottom: 28px; right: 28px; z-index: 999;
+    display: flex; align-items: center; gap: 10px;
+    background: #25D366; color: #fff;
+    padding: 14px 22px; border-radius: 100px;
+    font-weight: 600; font-size: 14px; text-decoration: none;
+    box-shadow: 0 6px 24px rgba(37,211,102,.4);
+    transition: all .25s;
+  }
+  .sticky-wa:hover { transform: scale(1.05); box-shadow: 0 10px 32px rgba(37,211,102,.5); }
+  .sticky-wa .wa-s-icon { font-size: 22px; }
+
+  /* ── REAL TALK MOMENTS ── */
+  .moments-track {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    padding: 10px 5vw 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .moment-card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 28px 26px;
+    border: 1px solid var(--border);
+    display: flex; flex-direction: column; gap: 0;
+    position: relative; overflow: hidden;
+    transition: transform .3s, box-shadow .3s;
+  }
+  .moment-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .mc-breakup::before { background: linear-gradient(90deg, #e74c3c, #ff6b9d); }
+  .mc-loss::before    { background: linear-gradient(90deg, #6c5ce7, #a29bfe); }
+  .mc-restart::before { background: linear-gradient(90deg, #fd9644, #f9ca24); }
+  .mc-lonely::before  { background: linear-gradient(90deg, #2d3436, #636e72); }
+  .mc-pressure::before { background: linear-gradient(90deg, #0984e3, #74b9ff); }
+  .mc-anxiety::before { background: linear-gradient(90deg, var(--crimson), var(--sage)); }
+
+  .moment-card:hover { transform: translateY(-6px); box-shadow: 0 18px 50px rgba(26,10,0,.1); }
+
+  .mc-top {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .mc-pill {
+    display: inline-block;
+    background: var(--crimson-pale); color: var(--crimson);
+    border-radius: 100px; padding: 5px 14px;
+    font-size: 12px; font-weight: 700;
+  }
+  .mc-loss .mc-pill    { background: #f0ebff; color: #6c5ce7; }
+  .mc-restart .mc-pill { background: #fff4e0; color: #e07b00; }
+  .mc-lonely .mc-pill  { background: #f0f0f0; color: #2d3436; }
+  .mc-pressure .mc-pill{ background: #e8f4fd; color: #0984e3; }
+  .mc-anxiety .mc-pill { background: var(--sage-pale); color: var(--sage-deep); }
+
+  .mc-time { font-size: 11px; color: var(--muted); font-style: italic; }
+
+  .mc-feeling {
+    font-family: 'Caveat', cursive;
+    font-size: 18px; line-height: 1.55;
+    color: var(--charcoal);
+    margin-bottom: 18px;
+    flex: 1;
+  }
+  .mc-divider {
+    height: 1px; background: var(--border);
+    margin-bottom: 16px;
+  }
+  .mc-aashva {
+    font-size: 13px; color: var(--sage-deep);
+    line-height: 1.6; margin-bottom: 18px;
+    background: var(--sage-pale);
+    padding: 12px 14px; border-radius: 12px;
+  }
+  .mc-cta {
+    display: inline-block;
+    color: var(--crimson); font-size: 13px; font-weight: 700;
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--crimson);
+    padding-bottom: 1px;
+    transition: color .2s, border-color .2s;
+    align-self: flex-start;
+  }
+  .mc-cta:hover { color: var(--sage-deep); border-color: var(--sage-deep); }
+
+  @media (max-width: 1000px) {
+    .moments-track { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 620px) {
+    .moments-track { grid-template-columns: 1fr; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    .hero-inner, .career-split, .friend-inner, .contact-split, .footer-top {
+      grid-template-columns: 1fr;
+    }
+    .why-grid, .resources-grid, .pro-grid { grid-template-columns: 1fr 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .transform-timeline { flex-wrap: wrap; }
+    .transform-timeline::before { display: none; }
+    .timeline-step { flex: 0 0 45%; }
+    .nav-center { display: none; }
+    .nav-hamburger { display: flex; }
+  }
+  @media (max-width: 600px) {
+    .why-grid, .resources-grid, .pro-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    .timeline-step { flex: 0 0 100%; }
+    .form-row { grid-template-columns: 1fr; }
+    .hero-actions { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="logo">
+    <div class="logo-icon">Aa</div>
+    <div>
+      <span class="logo-text">Aashva Health</span>
+      <span class="logo-sub">a SALP creation</span>
+    </div>
+  </a>
+
+  <div class="nav-center" id="navCenter">
+    <a href="#why">Why It Matters</a>
+    <a href="#real-talk">Real Talk</a>
+    <a href="#assessment" class="nav-test-pill"><span class="nav-test-dot"></span>Take the Test</a>
+    <a href="#resources">Resources</a>
+    <a href="#friend">Friend Therapist</a>
+    <a href="#testimonials">Stories</a>
+  </div>
+
+  <div class="nav-right">
+    <a href="#contact" class="nav-cta"><span class="nav-cta-icon">🌿</span> Free Session</a>
+    <button class="nav-hamburger" id="navHamburger" onclick="toggleDrawer()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer" id="navDrawer">
+  <a href="#why" onclick="closeDrawer()">Why Mental Health</a>
+  <a href="#real-talk" onclick="closeDrawer()">Real Talk</a>
+  <a href="#assessment" class="drawer-test" onclick="closeDrawer()">⚡ Take the Wellness Test</a>
+  <a href="#resources" onclick="closeDrawer()">Resources</a>
+  <a href="#professionals" onclick="closeDrawer()">Our Experts</a>
+  <a href="#friend" onclick="closeDrawer()">Friend Therapist</a>
+  <a href="#testimonials" onclick="closeDrawer()">Stories</a>
+  <a href="#intake" onclick="closeDrawer()">Deep Intake Form</a>
+  <a href="#contact" class="drawer-cta" onclick="closeDrawer()">🌿 Book Free Session</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-blob blob1"></div>
+  <div class="hero-bg-blob blob2"></div>
+  <div class="hero-bg-blob blob3"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Your first session is on us – completely free
+      </div>
+      <h1 class="hero-title">
+        From <em><span class="red">Struggling</span></em><br/>
+        to <em><span class="green">Thriving</span></em> –<br/>
+        We're with you.
+      </h1>
+      <p class="hero-sub">
+        Aashva Health isn't just therapy – it's your <strong>friendly guide</strong> through life's toughest chapters. Talk to real professionals who feel like friends, anytime you need.
+      </p>
+      <div class="hero-actions">
+        <a href="https://wa.me/919211705027?text=Hi%20Aashva%2C%20I%20want%20to%20avail%20my%20first%20free%20session%20with%20the%20professionals!" target="_blank" class="btn-primary">
+          <span class="btn-icon">💬</span>
+          Get My Free Session on WhatsApp
+        </a>
+        <a href="#why" class="btn-secondary">
+          Learn more ↓
+        </a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-avatars">
+          <span>😊</span><span>🧘</span><span>💪</span><span>🌱</span>
+        </div>
+        <div class="trust-text">
+          <strong>People are healing every day</strong><br/>
+          Join those who chose themselves first
+        </div>
+      </div>
+    </div>
+    <div class="hero-card-wrap">
+      <span class="free-tag">✨ First Session FREE</span>
+      <div class="hero-card">
+        <span class="card-emoji">🌿</span>
+        <p class="card-quote">"What if today was the day everything began to change?"</p>
+        <ul class="card-steps">
+          <li>
+            <span class="step-num">1</span>
+            <div><strong>Book your free session</strong><br/><small style="color:var(--muted)">One WhatsApp message is all it takes</small></div>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <div><strong>Meet your friend-therapist</strong><br/><small style="color:var(--muted)">Warm, non-judgmental, always there</small></div>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <div><strong>Start your transformation</strong><br/><small style="color:var(--muted)">From surviving to truly thriving</small></div>
+          </li>
+        </ul>
+        <a href="https://wa.me/919211705027?text=Hi%20Aashva%2C%20I%20want%20to%20avail%20my%20first%20free%20session%20with%20the%20professionals!" target="_blank" class="card-cta-strip">
+          <span class="wa-icon">📱</span>
+          <div class="wa-text">
+            <strong>Message us on WhatsApp now</strong>
+            <span>+91 92117 05027 · Instant response</span>
+          </div>
+          <span style="margin-left:auto;font-size:18px;">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <span class="stat-num">1 in 7</span>
+      <div class="stat-label">Indians face a mental health condition</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">80%</span>
+      <div class="stat-label">Improvement with consistent professional support</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">3×</span>
+      <div class="stat-label">Career performance boost with mental wellness</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">Free</span>
+      <div class="stat-label">Your very first session with Aashva</div>
+    </div>
+  </div>
+</div>
+
+<!-- SELF-ASSESSMENT TEST -->
+<section id="assessment">
+<style>
+/* ── ASSESSMENT ── */
+#assessment {
+  background: var(--warm-white);
+  padding: 90px 5vw;
+  position: relative; overflow: hidden;
+}
+#assessment::before {
+  content: '';
+  position: absolute; top: -120px; right: -120px;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, var(--sage-pale) 0%, transparent 70%);
+  pointer-events: none;
+}
+#assessment::after {
+  content: '';
+  position: absolute; bottom: -80px; left: -80px;
+  width: 360px; height: 360px; border-radius: 50%;
+  background: radial-gradient(circle, var(--crimson-pale) 0%, transparent 70%);
+  pointer-events: none;
+}
+.assess-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+
+/* Header */
+.assess-header { text-align: center; margin-bottom: 50px; }
+.assess-header .section-label { color: var(--sage-deep); }
+.assess-badges {
+  display: flex; justify-content: center; gap: 12px;
+  flex-wrap: wrap; margin-top: 18px;
+}
+.assess-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 100px; padding: 6px 14px;
+  font-size: 12px; color: var(--muted); font-weight: 500;
+}
+
+/* Card shell */
+.assess-card {
+  background: #fff;
+  border-radius: 28px;
+  box-shadow: 0 20px 70px rgba(26,10,0,.08), 0 2px 12px var(--shadow-red);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+/* Progress track */
+.assess-track {
+  height: 5px; background: var(--crimson-pale);
+}
+.assess-track-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--crimson), var(--sage));
+  transition: width .5s cubic-bezier(.4,0,.2,1);
+}
+
+/* Question area */
+.assess-body { padding: 40px 44px 36px; }
+.assess-q-meta {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 24px;
+}
+.assess-q-num {
+  font-size: 12px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--crimson);
+}
+.assess-q-dots { display: flex; gap: 5px; }
+.assess-q-dots span {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--crimson-pale);
+  transition: background .3s, transform .3s;
+}
+.assess-q-dots span.done { background: var(--sage); }
+.assess-q-dots span.active { background: var(--crimson); transform: scale(1.3); }
+
+.assess-question {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(20px, 2.5vw, 28px);
+  line-height: 1.3; color: var(--ink);
+  margin-bottom: 10px;
+}
+.assess-q-hint {
+  font-size: 14px; color: var(--muted); margin-bottom: 30px; line-height: 1.5;
+}
+
+/* Answer options */
+.assess-options { display: flex; flex-direction: column; gap: 10px; }
+.assess-opt {
+  display: flex; align-items: center; gap: 14px;
+  padding: 15px 20px; border-radius: 14px;
+  border: 1.5px solid var(--border);
+  cursor: pointer; transition: all .2s;
+  background: var(--cream);
+  user-select: none;
+}
+.assess-opt:hover { border-color: var(--sage-light); background: var(--sage-pale); }
+.assess-opt.chosen { border-color: var(--sage); background: var(--sage-pale); box-shadow: 0 2px 12px var(--shadow-green); }
+.assess-opt.chosen .ao-radio { background: var(--sage); border-color: var(--sage); }
+.assess-opt.chosen .ao-radio::after { opacity: 1; }
+.ao-radio {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 2px solid #ddd; background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; position: relative; transition: all .2s;
+}
+.ao-radio::after {
+  content: ''; width: 8px; height: 8px; border-radius: 50%;
+  background: #fff; opacity: 0; transition: opacity .2s;
+}
+.ao-text { font-size: 15px; color: var(--charcoal); font-weight: 500; }
+.ao-score { margin-left: auto; font-size: 12px; color: var(--muted); }
+
+/* Nav buttons */
+.assess-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24px 44px 32px; border-top: 1px solid var(--border);
+  background: var(--warm-white);
+}
+.assess-btn-back {
+  background: none; border: 1.5px solid var(--border);
+  color: var(--muted); padding: 11px 22px; border-radius: 100px;
+  font-size: 14px; font-weight: 500; cursor: pointer;
+  font-family: 'DM Sans', sans-serif; transition: all .2s;
+}
+.assess-btn-back:hover { border-color: var(--charcoal); color: var(--charcoal); }
+.assess-btn-next {
+  background: var(--crimson); color: #fff;
+  border: none; padding: 13px 30px; border-radius: 100px;
+  font-size: 15px; font-weight: 600; cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  box-shadow: 0 5px 18px var(--shadow-red);
+  display: flex; align-items: center; gap: 8px;
+  transition: all .25s;
+}
+.assess-btn-next:hover { background: var(--crimson-light); transform: translateY(-2px); }
+.assess-q-step-label { font-size: 13px; color: var(--muted); }
+
+/* Result screen */
+#assess-result {
+  display: none; padding: 50px 44px;
+  animation: fadeUp .5s ease both;
+}
+.result-meter-wrap { position: relative; width: 180px; height: 180px; margin: 0 auto 30px; }
+.result-meter-wrap svg { transform: rotate(-90deg); }
+.result-score-text {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  text-align: center;
+}
+.result-score-text .rs-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 44px; font-weight: 900; line-height: 1;
+}
+.result-score-text .rs-max { font-size: 13px; color: var(--muted); }
+
+.result-level-badge {
+  text-align: center; margin-bottom: 24px;
+}
+.rlb-pill {
+  display: inline-block; padding: 8px 24px; border-radius: 100px;
+  font-size: 14px; font-weight: 700; letter-spacing: .5px;
+}
+
+.result-message {
+  text-align: center; max-width: 560px; margin: 0 auto 32px;
+}
+.result-message h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; margin-bottom: 12px;
+}
+.result-message p { font-size: 15px; color: var(--muted); line-height: 1.7; }
+
+.result-areas { display: grid; grid-template-columns: repeat(5,1fr); gap: 10px; margin-bottom: 36px; }
+.ra-item { text-align: center; }
+.ra-bar-wrap { height: 80px; display: flex; align-items: flex-end; justify-content: center; margin-bottom: 8px; }
+.ra-bar { width: 28px; border-radius: 6px 6px 0 0; transition: height .8s ease; }
+.ra-label { font-size: 11px; color: var(--muted); line-height: 1.3; }
+
+.result-cta-wrap { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+/* Retake */
+.assess-retake {
+  background: none; border: none; color: var(--muted);
+  font-size: 13px; cursor: pointer; font-family: 'DM Sans', sans-serif;
+  text-decoration: underline; display: block; margin: 16px auto 0;
+  transition: color .2s;
+}
+.assess-retake:hover { color: var(--crimson); }
+
+@media (max-width: 620px) {
+  .assess-body { padding: 28px 22px 24px; }
+  .assess-nav { padding: 18px 22px 24px; }
+  #assess-result { padding: 32px 22px; }
+  .result-areas { grid-template-columns: repeat(5,1fr); gap: 6px; }
+}
+</style>
+
+  <div class="assess-inner">
+    <!-- Header -->
+    <div class="assess-header reveal">
+      <span class="section-label">Free Wellness Check</span>
+      <h2 class="section-title">How are you <em><span class="red">really</span></em> doing?</h2>
+      <p style="color:var(--muted);font-size:16px;line-height:1.7;max-width:520px;margin:0 auto 0">A quick 10-question assessment based on clinically validated tools (PHQ-9, GAD-7). Honest answers, instant insight — no sign-up needed.</p>
+      <div class="assess-badges">
+        <span class="assess-badge">⏱️ 2 minutes</span>
+        <span class="assess-badge">🔒 100% private</span>
+        <span class="assess-badge">🧪 Clinically inspired</span>
+        <span class="assess-badge">🎯 Instant result</span>
+      </div>
+    </div>
+
+    <!-- Card -->
+    <div class="assess-card reveal">
+      <div class="assess-track">
+        <div class="assess-track-fill" id="assessTrack" style="width:10%"></div>
+      </div>
+
+      <!-- Questions wrapper -->
+      <div id="assessQWrap">
+        <div class="assess-body">
+          <div class="assess-q-meta">
+            <span class="assess-q-num" id="assessQNum">Question 1 of 10</span>
+            <div class="assess-q-dots" id="assessDots"></div>
+          </div>
+          <div class="assess-question" id="assessQ"></div>
+          <div class="assess-q-hint" id="assessHint"></div>
+          <div class="assess-options" id="assessOpts"></div>
+        </div>
+        <div class="assess-nav">
+          <button class="assess-btn-back" id="assessBack" onclick="assessBack()">← Back</button>
+          <span class="assess-q-step-label" id="assessStepLbl">Select an answer to continue</span>
+          <button class="assess-btn-next" id="assessNext" onclick="assessNext()">Next <span>→</span></button>
+        </div>
+      </div>
+
+      <!-- Result -->
+      <div id="assess-result">
+        <div class="result-meter-wrap">
+          <svg width="180" height="180" viewBox="0 0 180 180">
+            <circle cx="90" cy="90" r="78" fill="none" stroke="#f5e6e4" stroke-width="12"/>
+            <circle cx="90" cy="90" r="78" fill="none" stroke="url(#rg)" stroke-width="12"
+              stroke-linecap="round" stroke-dasharray="490" id="resultCircle" stroke-dashoffset="490"/>
+            <defs>
+              <linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#C0392B"/>
+                <stop offset="100%" stop-color="#52B788"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div class="result-score-text">
+            <div class="rs-num" id="rScoreNum">0</div>
+            <div class="rs-max">out of 30</div>
+          </div>
+        </div>
+        <div class="result-level-badge">
+          <span class="rlb-pill" id="rLevelPill"></span>
+        </div>
+        <div class="result-message">
+          <h3 id="rTitle"></h3>
+          <p id="rMsg"></p>
+        </div>
+
+        <!-- Area bars -->
+        <div class="result-areas" id="rAreas"></div>
+
+        <div class="result-cta-wrap">
+          <a href="https://wa.me/919211705027?text=Hi%20Aashva%2C%20I%20just%20completed%20the%20wellness%20test%20and%20I%27d%20like%20to%20book%20my%20free%20first%20session!" target="_blank" class="btn-primary">
+            <span>💬</span> Talk to someone now
+          </a>
+          <a href="#intake" class="btn-secondary">Fill deep intake form</a>
+        </div>
+        <button class="assess-retake" onclick="assessRetake()">Retake the test</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY MENTAL HEALTH -->
+<section id="why">
+  <div class="section-inner">
+    <span class="section-label reveal">Why It Matters</span>
+    <h2 class="section-title reveal">Mental health is not a<br/><em style="color:var(--sage-light)">luxury</em> — it's your foundation.</h2>
+    <p class="section-sub reveal">Everything in your life — relationships, work, joy — is built on how you feel inside. Ignoring your mental health doesn't make it go away; it makes everything harder.</p>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <span class="why-icon">🧠</span>
+        <h3>Your Mind Shapes Reality</h3>
+        <p>How you think determines what you see, what you feel, and what actions you take. A healthy mindset opens doors that stress and anxiety keep closed.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-icon">💞</span>
+        <h3>Relationships Thrive</h3>
+        <p>When you're at peace with yourself, every relationship in your life — romantic, professional, family — becomes deeper, healthier, and more fulfilling.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-icon">🌱</span>
+        <h3>Focus on Yourself First</h3>
+        <p>Self-investment isn't selfish. It's the most productive thing you can do. You can't pour from an empty cup — and you deserve to overflow.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-icon">⚡</span>
+        <h3>Energy & Clarity</h3>
+        <p>Mental wellness translates into physical energy, sharper decision-making, and a zest for life that no amount of coffee can replicate.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-icon">🛡️</span>
+        <h3>Resilience Under Pressure</h3>
+        <p>Life throws curveballs. Therapy builds the emotional muscles to face them without breaking — to bend, adapt, and come back stronger.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-icon">🌅</span>
+        <h3>A Life You Actually Love</h3>
+        <p>Healing isn't just about removing pain — it's about building a life filled with purpose, connection, and genuine happiness day after day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REAL TALK SECTION -->
+<section id="real-talk" style="background:var(--warm-white);padding:0;overflow:hidden;">
+
+  <!-- Intro hook -->
+  <div style="padding:80px 5vw 0;max-width:1200px;margin:0 auto;text-align:center;">
+    <span class="section-label reveal">We See You</span>
+    <h2 class="section-title reveal" style="max-width:680px;margin:0 auto 16px;">
+      It happened. And it's <em><span class="red">okay</span></em> that<br/>you're not okay right now.
+    </h2>
+    <p style="color:var(--muted);font-size:17px;line-height:1.7;max-width:560px;margin:0 auto 60px" class="reveal">
+      43% of young Indians in cities feel lonely. 1 in 4 young people faces depression. You're not dramatic. You're not weak. You're human — and you deserve real support.
+    </p>
+  </div>
+
+  <!-- Moment cards — horizontal scroll on mobile, grid on desktop -->
+  <div class="moments-track">
+
+    <div class="moment-card mc-breakup reveal">
+      <div class="mc-top">
+        <span class="mc-pill">💔 Breakup</span>
+        <span class="mc-time">3 weeks ago</span>
+      </div>
+      <p class="mc-feeling">"We were together for 3 years. Now I open Instagram and everything reminds me of them. I can't eat properly. I don't want to go out. My friends say <em>just move on</em> — but how?"</p>
+      <div class="mc-divider"></div>
+      <p class="mc-aashva">💚 <strong>Aashva says:</strong> Grief after a relationship is real grief. You don't need to rush it — you need someone who lets you feel it fully, then gently helps you find yourself again.</p>
+      <a href="https://wa.me/919211705027?text=Hi%20Aashva%2C%20I%20want%20to%20avail%20my%20first%20free%20session%20with%20the%20professionals!" target="_blank" class="mc-cta">Talk to someone now →</a>
+    </div>
+
+    <div class="moment-card mc-loss reveal">
+      <div class="mc-top">
+        <span class="mc-pill">🕯️ Loss & Grief</span>
+        <span class="mc-time">Still processing</span>
+      </div>
+      <p class="mc-feeling">"I lost my parent last year. Everyone expects me to be <em>strong</em> for the family. Nobody asks how I'm doing. I smile at work. I cry in the shower. I feel completely alone in a house full of people."</p>
+      <div class="mc-divider"></div>
+      <p class="mc-aashva">💚 <strong>Aashva says:</strong> Carrying everyone's grief while hiding your own is exhausting. Your loss matters too. You deserve a space that's entirely, unapologetically yours.</p>
+      <a href="https://wa.me/919211705027?text=Hi%20Aashva%2C%20I%20want%20to%20avail%20my%20first%20free%20session%20with%20the%20professionals!" target="_blank" class="mc-cta">Talk to someone now →</a>
+    </div>
+
+    <div class="moment-card mc-restart reveal">
+      <div class="mc-top">
+        <span class="mc-pill">🔄 Starting Over</span>
+        <span class="mc-time">Feeling stuck</span>
+      </div>
+      <p class="mc-feeling">"I quit my job. Left a city. Walked away from a life that looked perfect from outside but was killing me inside. Now I'm 27, back home, and have no idea who I am or what I'm supposed to do next."</p>
+      <div class="mc-divider"></div>
+      <p class="mc-aashva">💚 <strong>Aashva says:</strong> Starting over at any age is brave, not failure. The confusion you feel right now? It's the beginning of clarity — and we'll find it together.</p>
+      <a href="https://wa.me/919211705027?text=Hi%20Aashva%2C%20I%20want%20to%20avail%20my%20first%20free%20session%20with%20the%20professionals!" target="_blank" class="mc-cta">Talk to someone now →</a>
+    </div>
+
+    <div class="moment-card mc-lonely reveal">
+      <div class="mc-top">
+        <span class="mc-pill">🌑 Loneliness</span>
+        <span class="mc-time">Every night</span>
+      </div>
+      <p class="mc-feeling">"I have 800 followers. A good job. A full calendar. But 11pm hits and the silence is deafening. I don't know how to tell anyone that I feel completely invisible — even to myself."</p>
+      <div class="mc-divider"></div>
+      <p class="mc-aashva">💚 <strong>Aashva says:</strong> Loneliness doesn't need a reason. It's one of the most common silent struggles young Indians face. You're not broken — you just need to be truly heard.</p>
+      <a href="https://wa.me/919211705027?text=Hi%20Aashva%2C%20I%20want%20to%20avail%20my%20first%20free%20session%20with%20the%20professionals!" target="_blank" class="mc-cta">Talk to someone now →</a>
+    </div>
+
+    <div class="moment-card mc-pressure reveal">
+      <div class="mc-top">
+        <span class="mc-pill">🎓 Family Pressure</span>
+        <span class="mc-time">Every family call</span>
+      </div>
+      <p class="mc-feeling">"Beta, when is the job? When is the marriage? Why aren't you happy? Every phone call is a performance review. I love my family but I'm drowning in their expectations and terrified to disappoint them."</p>
+      <div class="mc-divider"></div>
+      <p class="mc-aashva">💚 <strong>Aashva says:</strong> You can love your family and still need boundaries. Learning to honour both — their love and your limits — is exactly what therapy helps you do.</p>
+      <a href="https://wa.me/919211705027?text=Hi%20Aashva%2C%20I%20want%20to%20avail%20my%20first%20free%20session%20with%20the%20professionals!" target="_blank" class="mc-cta">Talk to someone now →</a>
+    </div>
+
+    <div class="moment-card mc-anxiety reveal">
+      <div class="mc-top">
+        <span class="mc-pill">⚡ Anxiety Spiral</span>
+        <span class="mc-time">Right now</span>
+      </div>
+      <p class="mc-feeling">"My chest tightens before every meeting. I rehearse conversations for hours. I cancel plans because the thought of going out feels too heavy. I know it's irrational. I can't stop it anyway."</p>
+      <div class="mc-divider"></div>
+      <p class="mc-aashva">💚 <strong>Aashva says:</strong> Anxiety isn't your personality — it's a pattern your brain learned. And patterns can be unlearned. We have therapists who specialise in exactly this.</p>
+      <a href="https://wa.me/919211705027?text=Hi%20Aashva%2C%20I%20want%20to%20avail%20my%20first%20free%20session%20with%20the%20professionals!" target="_blank" class="mc-cta">Talk to someone now →</a>
+    </div>
+
+  </div><!-- end moments-track -->
+
+  <!-- Closing nudge -->
+  <div style="padding:50px 5vw 90px;max-width:700px;margin:0 auto;text-align:center;">
+    <div class="reveal" style="background:linear-gradient(135deg,var(--crimson-pale),var(--sage-pale));border-radius:28px;padding:40px 36px;border:1px solid rgba(192,57,43,.12)">
+      <p style="font-family:'Caveat',cursive;font-size:28px;color:var(--charcoal);line-height:1.4;margin-bottom:20px">"The bravest thing you did today was not pretend that everything was fine."</p>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:28px">You found this page. That already counts as showing up for yourself.</p>
+      <a href="https://wa.me/919211705027?text=Hi%20Aashva%2C%20I%20want%20to%20avail%20my%20first%20free%20session%20with%20the%20professionals!" target="_blank" class="btn-primary" style="display:inline-flex">
+        <span>💬</span> Claim my free first session
+      </a>
+    </div>
+  </div>
+
+</section>
+
+<!-- RESOURCES -->
+<section id="resources">
+  <div class="section-inner">
+    <span class="section-label reveal">Curated Resources</span>
+    <h2 class="section-title reveal">Feed your mind with the<br/><span class="red">right knowledge.</span></h2>
+    <p class="section-sub reveal">Handpicked books and videos that have genuinely changed lives. Start your self-healing journey between sessions.</p>
+    <div class="resources-tabs reveal">
+      <button class="tab-btn active" onclick="showTab('books')">📚 Books</button>
+      <button class="tab-btn" onclick="showTab('videos')">▶️ YouTube</button>
+    </div>
+    <div id="books-tab" class="resources-grid">
+      <a href="https://www.goodreads.com/book/show/18693771-the-body-keeps-the-score" target="_blank" class="resource-card">
+        <div class="resource-thumb book">📖</div>
+        <div class="resource-body">
+          <div class="resource-type">Must-Read Book</div>
+          <div class="resource-title">The Body Keeps the Score</div>
+          <div class="resource-author">Bessel van der Kolk · Trauma & Healing</div>
+        </div>
+      </a>
+      <a href="https://www.goodreads.com/book/show/40745.Man_s_Search_for_Meaning" target="_blank" class="resource-card">
+        <div class="resource-thumb book">📖</div>
+        <div class="resource-body">
+          <div class="resource-type">Life-Changing Book</div>
+          <div class="resource-title">Man's Search for Meaning</div>
+          <div class="resource-author">Viktor Frankl · Purpose & Resilience</div>
+        </div>
+      </a>
+      <a href="https://www.goodreads.com/book/show/23692271-the-subtle-art-of-not-giving-a-f-ck" target="_blank" class="resource-card">
+        <div class="resource-thumb book">📖</div>
+        <div class="resource-body">
+          <div class="resource-type">Modern Classic</div>
+          <div class="resource-title">The Subtle Art of Not Giving a F*ck</div>
+          <div class="resource-author">Mark Manson · Values & Clarity</div>
+        </div>
+      </a>
+      <a href="https://www.goodreads.com/book/show/34507​485-untamed" target="_blank" class="resource-card">
+        <div class="resource-thumb book">📖</div>
+        <div class="resource-body">
+          <div class="resource-type">Empowerment</div>
+          <div class="resource-title">Feeling Good: The New Mood Therapy</div>
+          <div class="resource-author">David D. Burns · CBT for Depression</div>
+        </div>
+      </a>
+      <a href="https://www.goodreads.com/book/show/662.The_Power_of_Now" target="_blank" class="resource-card">
+        <div class="resource-thumb book">📖</div>
+        <div class="resource-body">
+          <div class="resource-type">Mindfulness</div>
+          <div class="resource-title">The Power of Now</div>
+          <div class="resource-author">Eckhart Tolle · Present Awareness</div>
+        </div>
+      </a>
+      <a href="https://www.goodreads.com/book/show/817616.Ikigai" target="_blank" class="resource-card">
+        <div class="resource-thumb book">📖</div>
+        <div class="resource-body">
+          <div class="resource-type">Purpose</div>
+          <div class="resource-title">Ikigai</div>
+          <div class="resource-author">Héctor García · Finding Your Reason to Be</div>
+        </div>
+      </a>
+    </div>
+    <div id="videos-tab" class="resources-grid" style="display:none">
+      <a href="https://www.youtube.com/watch?v=3nwwKbM_vJc" target="_blank" class="resource-card vid">
+        <div class="resource-thumb video">🎥<div class="res-play">▶</div></div>
+        <div class="resource-body">
+          <div class="resource-type">YouTube · TED Talk</div>
+          <div class="resource-title">The Gift and Power of Emotional Courage</div>
+          <div class="resource-author">Susan David · Emotional Agility</div>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=rkZl2gsLUp4" target="_blank" class="resource-card vid">
+        <div class="resource-thumb video">🎥<div class="res-play">▶</div></div>
+        <div class="resource-body">
+          <div class="resource-type">YouTube · Documentary</div>
+          <div class="resource-title">Defining Moments in Mental Health</div>
+          <div class="resource-author">Understanding Anxiety & Depression</div>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=0gks6ceq4eQ" target="_blank" class="resource-card vid">
+        <div class="resource-thumb video">🎥<div class="res-play">▶</div></div>
+        <div class="resource-body">
+          <div class="resource-type">YouTube · Guided</div>
+          <div class="resource-title">How to Make Stress Your Friend</div>
+          <div class="resource-author">Kelly McGonigal · TED Talk</div>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/@AndrewHuberman" target="_blank" class="resource-card vid">
+        <div class="resource-thumb video">🎥<div class="res-play">▶</div></div>
+        <div class="resource-body">
+          <div class="resource-type">YouTube Channel</div>
+          <div class="resource-title">Huberman Lab</div>
+          <div class="resource-author">Science-based mental performance tools</div>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/@Therapy_in_a_Nutshell" target="_blank" class="resource-card vid">
+        <div class="resource-thumb video">🎥<div class="res-play">▶</div></div>
+        <div class="resource-body">
+          <div class="resource-type">YouTube Channel</div>
+          <div class="resource-title">Therapy in a Nutshell</div>
+          <div class="resource-author">Emma McAdam · Simple mental health tools</div>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/@IIMKozhikode_iimk" target="_blank" class="resource-card vid">
+        <div class="resource-thumb video">🎥<div class="res-play">▶</div></div>
+        <div class="resource-body">
+          <div class="resource-type">YouTube · Wellness</div>
+          <div class="resource-title">Meditation for Mental Clarity</div>
+          <div class="resource-author">Guided mindfulness for beginners</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY PROFESSIONALS -->
+<section id="professionals">
+  <div class="section-inner">
+    <span class="section-label reveal">Expert Support</span>
+    <h2 class="section-title reveal">Why talking to a professional<br/>changes <em><span class="red">everything.</span></em></h2>
+    <p class="section-sub reveal">Your friend listens. A professional helps you understand. The right therapist does both — and that's exactly what Aashva offers.</p>
+    <div class="pro-grid">
+      <div class="pro-card reveal">
+        <div class="pro-icon-wrap">🔍</div>
+        <div class="pro-content">
+          <h3>They Find What You Can't See</h3>
+          <p>Patterns in your thinking, triggers in your behaviour, roots of your anxiety — professionals spot what years of self-reflection might miss. It's not magic; it's trained expertise.</p>
+        </div>
+      </div>
+      <div class="pro-card reveal">
+        <div class="pro-icon-wrap">🧰</div>
+        <div class="pro-content">
+          <h3>Proven Tools, Not Just Comfort</h3>
+          <p>CBT, DBT, mindfulness-based approaches — therapists equip you with research-backed techniques that build lasting change, not just temporary relief.</p>
+        </div>
+      </div>
+      <div class="pro-card reveal">
+        <div class="pro-icon-wrap">🤝</div>
+        <div class="pro-content">
+          <h3>A Safe Space With Zero Judgment</h3>
+          <p>Say the thing you've never said out loud. No one will love you less, no one will gossip, no one will be disappointed. Just honest, safe, supported exploration.</p>
+        </div>
+      </div>
+      <div class="pro-card reveal">
+        <div class="pro-icon-wrap">🗺️</div>
+        <div class="pro-content">
+          <h3>A Roadmap, Not Just a Shoulder</h3>
+          <p>Venting feels good but doesn't change things. A therapist partners with you to set goals, track progress, and celebrate your wins along the healing journey.</p>
+        </div>
+      </div>
+      <div class="pro-card reveal">
+        <div class="pro-icon-wrap">⏰</div>
+        <div class="pro-content">
+          <h3>Results That Actually Stick</h3>
+          <p>Unlike quick fixes or generic advice, therapeutic work creates fundamental shifts in how you think and feel — changes that compound over a lifetime.</p>
+        </div>
+      </div>
+      <div class="pro-card reveal">
+        <div class="pro-icon-wrap">🌐</div>
+        <div class="pro-content">
+          <h3>Anywhere You Are</h3>
+          <p>Online or in-person, morning or evening — Aashva professionals fit your schedule and your comfort zone, no commute required.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FRIEND THERAPIST -->
+<section id="friend">
+  <div class="section-inner">
+    <div class="friend-inner">
+      <div>
+        <span class="section-label reveal">The Aashva Difference</span>
+        <h2 class="section-title reveal" style="color:#fff">Meet your<br/><em>friend-therapist.</em></h2>
+        <p class="section-sub reveal" style="color:rgba(255,251,245,.75)">Therapy shouldn't feel like a cold clinic visit. At Aashva, your therapist is warm, conversational, and genuinely invested in you as a whole person.</p>
+        <ul class="friend-points">
+          <li class="reveal">
+            <div class="fp-icon">😊</div>
+            <div class="fp-text">
+              <h4>Friendly, Not Clinical</h4>
+              <p>We skip the stiff formality. Sessions feel like deep conversations with someone who truly gets you and genuinely wants you to win.</p>
+            </div>
+          </li>
+          <li class="reveal">
+            <div class="fp-icon">🕐</div>
+            <div class="fp-text">
+              <h4>Anytime You Need</h4>
+              <p>Life doesn't follow office hours. Reach out when anxiety spikes at 10pm or when you need a pep talk before a big meeting.</p>
+            </div>
+          </li>
+          <li class="reveal">
+            <div class="fp-icon">🌍</div>
+            <div class="fp-text">
+              <h4>Culturally Fluent</h4>
+              <p>We understand the Indian context — family pressures, societal expectations, career stress. No need to explain your world from scratch.</p>
+            </div>
+          </li>
+          <li class="reveal">
+            <div class="fp-icon">🔒</div>
+            <div class="fp-text">
+              <h4>Completely Confidential</h4>
+              <p>What you share stays between you and your therapist. Always. No exceptions. Your privacy is sacred to us.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <div class="friend-chat">
+          <div class="chat-header">
+            <div class="chat-avatar">🌿</div>
+            <div>
+              <div class="chat-name">Priya (Your Aashva Guide)</div>
+              <div class="chat-status">Online now</div>
+            </div>
+          </div>
+          <div class="chat-messages">
+            <div class="msg them">
+              Hey! I've been feeling really overwhelmed with work lately and I don't know who to talk to... 😞
+              <div class="msg-time">10:32 PM</div>
+            </div>
+            <div class="msg us">
+              I'm so glad you reached out. That feeling of overwhelm is exhausting — you're not alone in this at all. Tell me more about what's been going on? 💙
+              <div class="msg-time">10:33 PM</div>
+            </div>
+            <div class="msg them">
+              It's like no matter what I do it's never enough. My mind just won't shut off.
+              <div class="msg-time">10:35 PM</div>
+            </div>
+            <div class="msg us">
+              That sounds like your nervous system is in overdrive. What if we tried something simple together right now? Let's breathe for just 2 minutes — I'll guide you. 🌬️
+              <div class="msg-time">10:36 PM</div>
+            </div>
+            <div class="msg them">
+              Okay... I didn't expect this to actually help but I feel a tiny bit calmer already 😊
+              <div class="msg-time">10:42 PM</div>
+            </div>
+            <div class="msg us">
+              That tiny bit of calm? That's <em>you</em>. You did that. And we're just getting started 🌱
+              <div class="msg-time">10:43 PM</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:20px;text-align:center;">
+          <a href="https://wa.me/919211705027?text=Hi%20Aashva%2C%20I%20want%20to%20avail%20my%20first%20free%20session%20with%20the%20professionals!" target="_blank" class="btn-primary" style="display:inline-flex;background:var(--sage);box-shadow:0 6px 24px rgba(82,183,136,.4)">
+            <span>💬</span> Start a conversation like this
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSFORMATION TIMELINE -->
+<section id="transform">
+  <div class="section-inner">
+    <div style="text-align:center">
+      <span class="section-label reveal">Your Journey</span>
+      <h2 class="section-title reveal">How Aashva transforms<br/><span class="red">your</span> life <span class="green">chapter by chapter.</span></h2>
+      <p style="color:var(--muted);font-size:16px;max-width:520px;margin:0 auto 0;line-height:1.7" class="reveal">Every transformation starts with one honest conversation. Here's the path we walk together.</p>
+    </div>
+    <div class="transform-timeline" style="margin-top:60px">
+      <div class="timeline-step reveal">
+        <div class="tl-circle from">😔</div>
+        <div class="tl-title">Right Now</div>
+        <div class="tl-desc">Feeling stuck, overwhelmed, or just not yourself. Something doesn't feel right but you can't name it.</div>
+      </div>
+      <div class="timeline-step reveal">
+        <div class="tl-circle mid">🌱</div>
+        <div class="tl-title">First Session</div>
+        <div class="tl-desc">Free, no pressure. Just a conversation. You share, we listen, we begin to understand your world together.</div>
+      </div>
+      <div class="timeline-step reveal">
+        <div class="tl-circle mid">🧩</div>
+        <div class="tl-title">Clarity Emerges</div>
+        <div class="tl-desc">Patterns become visible. You start understanding <em>why</em> you feel how you feel. Relief meets insight.</div>
+      </div>
+      <div class="timeline-step reveal">
+        <div class="tl-circle mid">🛠️</div>
+        <div class="tl-title">Building Tools</div>
+        <div class="tl-desc">Coping strategies, communication skills, boundary-setting. Practical tools you use every single day.</div>
+      </div>
+      <div class="timeline-step reveal">
+        <div class="tl-circle to">✨</div>
+        <div class="tl-title">Transformation</div>
+        <div class="tl-desc">Better relationships, stronger career, genuine joy. You recognize yourself — and you like what you see.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-split">
+      <div class="contact-info">
+        <span class="section-label reveal">Reach Out</span>
+        <h2 class="reveal">Start your healing<br/><em style="font-family:'Playfair Display',serif"><span class="red">today.</span></em></h2>
+        <p class="reveal">Your first session is free. No commitment, no pressure. Just a warm, honest conversation with someone who genuinely cares. Reach out the way that feels right for you.</p>
+        <div class="contact-channels">
+          <a href="https://wa.me/919211705027?text=Hi%20Aashva%2C%20I%20want%20to%20avail%20my%20first%20free%20session%20with%20the%20professionals!" target="_blank" class="channel-card reveal">
+            <span class="ch-icon">📱</span>
+            <div>
+              <div class="ch-label">WhatsApp (Fastest response)</div>
+              <div class="ch-val">+91 92117 05027</div>
+            </div>
+            <span style="margin-left:auto;font-size:18px;color:var(--sage)">→</span>
+          </a>
+          <a href="mailto:getsalpoffical@gmail.com" class="channel-card reveal">
+            <span class="ch-icon">✉️</span>
+            <div>
+              <div class="ch-label">Email us anytime</div>
+              <div class="ch-val">getsalpoffical@gmail.com</div>
+            </div>
+            <span style="margin-left:auto;font-size:18px;color:var(--sage)">→</span>
+          </a>
+        </div>
+        <div style="margin-top:30px;padding:20px;background:var(--crimson-pale);border-radius:18px;border:1px solid rgba(192,57,43,.15)" class="reveal">
+          <p style="font-family:'Caveat',cursive;font-size:20px;color:var(--crimson);line-height:1.4">"Asking for help is not weakness — it's the first act of someone who's decided they deserve better."</p>
+          <p style="font-size:13px;color:var(--muted);margin-top:8px">— The Aashva Philosophy</p>
+        </div>
+      </div>
+      <div class="contact-form-wrap reveal">
+        <div class="form-title">Book your <span style="color:var(--crimson)">free</span> first session</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="Arjun Sharma" id="f-name"/>
+          </div>
+          <div class="form-group">
+            <label>Phone / WhatsApp</label>
+            <input type="tel" placeholder="+91 98765 43210" id="f-phone"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="you@example.com" id="f-email"/>
+        </div>
+        <div class="form-group">
+          <label>What's bringing you here?</label>
+          <select id="f-reason">
+            <option value="">Select a topic...</option>
+            <option>Anxiety / Overthinking</option>
+            <option>Depression / Low Mood</option>
+            <option>Relationship Issues</option>
+            <option>Work / Career Stress</option>
+            <option>Self-Esteem & Confidence</option>
+            <option>Life Transitions</option>
+            <option>Grief & Loss</option>
+            <option>Just feeling off, not sure</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Anything you'd like us to know? (optional)</label>
+          <textarea rows="3" placeholder="Share as much or as little as you'd like..." id="f-msg"></textarea>
+        </div>
+        <button class="form-submit" onclick="submitForm()">
+          <span>🌿</span> Request My Free Session
+        </button>
+        <p style="text-align:center;font-size:12px;color:var(--muted);margin-top:14px">We'll respond within a few hours. Your privacy is always protected.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" style="background:#fff;padding:90px 5vw;">
+<style>
+  /* ── TESTIMONIALS ── */
+  .testi-header { text-align:center; max-width:700px; margin:0 auto 20px; }
+
+  .rating-hero {
+    display:flex; align-items:center; justify-content:center; gap:28px;
+    flex-wrap:wrap;
+    background: linear-gradient(135deg, var(--crimson) 0%, #8B0000 100%);
+    border-radius:28px; padding:36px 40px; margin-bottom:60px;
+    box-shadow: 0 16px 60px var(--shadow-red);
+    position:relative; overflow:hidden;
+  }
+  .rating-hero::before {
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(circle at 70% 50%, rgba(82,183,136,.18) 0%, transparent 60%);
+    pointer-events:none;
+  }
+  .rh-score {
+    display:flex; flex-direction:column; align-items:center;
+  }
+  .rh-num {
+    font-family:'Playfair Display',serif;
+    font-size:82px; font-weight:900; color:#fff; line-height:1;
+    letter-spacing:-3px;
+  }
+  .rh-stars { display:flex; gap:5px; margin:6px 0; }
+  .rh-stars span { font-size:26px; filter:drop-shadow(0 2px 4px rgba(0,0,0,.2)); }
+  .rh-label { font-size:13px; color:rgba(255,255,255,.75); letter-spacing:.5px; }
+
+  .rh-divider { width:1px; height:80px; background:rgba(255,255,255,.2); }
+
+  .rh-stats { display:flex; flex-direction:column; gap:12px; }
+  .rh-stat { display:flex; align-items:center; gap:12px; }
+  .rh-bar-wrap { width:180px; height:8px; background:rgba(255,255,255,.2); border-radius:100px; overflow:hidden; }
+  .rh-bar-fill { height:100%; border-radius:100px; background:#fff; }
+  .rh-stat-label { font-size:13px; color:rgba(255,255,255,.85); min-width:26px; text-align:right; }
+  .rh-stat-count { font-size:12px; color:rgba(255,255,255,.5); min-width:28px; }
+
+  .rh-trust {
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+  }
+  .rh-trust-num {
+    font-family:'Playfair Display',serif;
+    font-size:48px; font-weight:900; color:#fff; line-height:1;
+  }
+  .rh-trust-label { font-size:13px; color:rgba(255,255,255,.75); text-align:center; max-width:120px; line-height:1.4; }
+
+  /* Testimonial grid */
+  .voc-grid {
+    display:grid; grid-template-columns:repeat(3,1fr); gap:22px;
+    margin-bottom:40px;
+  }
+  .voc-card {
+    background:var(--warm-white); border-radius:22px; padding:28px;
+    border:1px solid var(--border);
+    display:flex; flex-direction:column; gap:16px;
+    transition:transform .3s, box-shadow .3s;
+    position:relative;
+  }
+  .voc-card:hover { transform:translateY(-5px); box-shadow:0 14px 44px rgba(26,10,0,.09); }
+  .voc-card.featured {
+    background: linear-gradient(145deg, var(--crimson-pale), var(--sage-pale));
+    border-color:rgba(82,183,136,.3);
+    grid-column: span 1;
+  }
+  .voc-quote-icon {
+    font-size:32px; line-height:1; color:var(--crimson); opacity:.25;
+    font-family:'Georgia',serif; font-weight:900;
+    position:absolute; top:22px; right:24px;
+  }
+  .voc-stars { display:flex; gap:3px; }
+  .voc-stars span { font-size:15px; }
+  .voc-text {
+    font-size:15px; line-height:1.7; color:var(--charcoal);
+    font-style:italic; flex:1;
+  }
+  .voc-text strong { font-style:normal; color:var(--crimson); }
+  .voc-author { display:flex; align-items:center; gap:12px; margin-top:4px; }
+  .voc-avatar {
+    width:42px; height:42px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:19px; flex-shrink:0;
+    border:2px solid rgba(192,57,43,.12);
+  }
+  .voc-name { font-size:14px; font-weight:700; color:var(--charcoal); }
+  .voc-meta { font-size:12px; color:var(--muted); margin-top:1px; }
+  .voc-tag {
+    display:inline-block; font-size:10px; font-weight:700;
+    letter-spacing:1px; text-transform:uppercase;
+    padding:3px 10px; border-radius:100px;
+    background:var(--sage-pale); color:var(--sage-deep);
+    align-self:flex-start;
+  }
+  .voc-card.featured .voc-tag { background:rgba(192,57,43,.12); color:var(--crimson); }
+
+  /* Bottom trust strip */
+  .voc-bottom {
+    display:flex; align-items:center; justify-content:center; gap:32px;
+    flex-wrap:wrap;
+    padding:28px 32px;
+    background:var(--warm-white); border-radius:20px;
+    border:1px solid var(--border);
+  }
+  .voc-bottom-item { display:flex; align-items:center; gap:10px; }
+  .vb-icon { font-size:22px; }
+  .vb-text strong { display:block; font-size:15px; font-weight:700; color:var(--charcoal); }
+  .vb-text span { font-size:12px; color:var(--muted); }
+
+  @media(max-width:1000px) { .voc-grid { grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:620px)  {
+    .voc-grid { grid-template-columns:1fr; }
+    .rh-divider { display:none; }
+    .rh-stats { display:none; }
+  }
+</style>
+  <div class="section-inner">
+    <!-- Header -->
+    <div class="testi-header reveal">
+      <span class="section-label">Real Stories</span>
+      <h2 class="section-title">Trusted by <span class="red">500+</span> people<br/>who chose to heal.</h2>
+      <p style="color:var(--muted);font-size:16px;line-height:1.7;margin-top:10px">Every review below is a real life that shifted. These aren't just words — they're proof that showing up for yourself works.</p>
+    </div>
+
+    <!-- Big rating card -->
+    <div class="rating-hero reveal">
+      <div class="rh-score">
+        <span class="rh-num">4.8</span>
+        <div class="rh-stars">
+          <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+        </div>
+        <span class="rh-label">Average Rating · 500+ Reviews</span>
+      </div>
+
+      <div class="rh-divider"></div>
+
+      <div class="rh-stats">
+        <div class="rh-stat">
+          <span class="rh-stat-label" style="color:rgba(255,255,255,.85)">5★</span>
+          <div class="rh-bar-wrap"><div class="rh-bar-fill" style="width:84%"></div></div>
+          <span class="rh-stat-count">420</span>
+        </div>
+        <div class="rh-stat">
+          <span class="rh-stat-label" style="color:rgba(255,255,255,.85)">4★</span>
+          <div class="rh-bar-wrap"><div class="rh-bar-fill" style="width:11%"></div></div>
+          <span class="rh-stat-count">55</span>
+        </div>
+        <div class="rh-stat">
+          <span class="rh-stat-label" style="color:rgba(255,255,255,.85)">3★</span>
+          <div class="rh-bar-wrap"><div class="rh-bar-fill" style="width:3%"></div></div>
+          <span class="rh-stat-count">18</span>
+        </div>
+        <div class="rh-stat">
+          <span class="rh-stat-label" style="color:rgba(255,255,255,.85)">2★</span>
+          <div class="rh-bar-wrap"><div class="rh-bar-fill" style="width:1%"></div></div>
+          <span class="rh-stat-count">5</span>
+        </div>
+        <div class="rh-stat">
+          <span class="rh-stat-label" style="color:rgba(255,255,255,.85)">1★</span>
+          <div class="rh-bar-wrap"><div class="rh-bar-fill" style="width:0.5%"></div></div>
+          <span class="rh-stat-count">2</span>
+        </div>
+      </div>
+
+      <div class="rh-divider"></div>
+
+      <div class="rh-trust">
+        <span class="rh-trust-num">500+</span>
+        <span class="rh-trust-label">Lives touched across India</span>
+      </div>
+    </div>
+
+    <!-- VOC cards -->
+    <div class="voc-grid">
+
+      <div class="voc-card featured reveal">
+        <span class="voc-quote-icon">"</span>
+        <span class="voc-tag">✨ Top Review</span>
+        <div class="voc-stars"><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span></div>
+        <p class="voc-text">"I came to Aashva three months after a breakup that completely destroyed my sense of self. I couldn't sleep, I'd lost 6 kgs, and I was crying in office bathrooms. My therapist <strong>never made me feel broken</strong> — she made me feel like I was just going through something human. Today I'm genuinely happy again. I didn't think that was possible."</p>
+        <div class="voc-author">
+          <div class="voc-avatar" style="background:var(--crimson-pale)">🌸</div>
+          <div>
+            <div class="voc-name">Riya S.</div>
+            <div class="voc-meta">24 · Content Creator · Mumbai</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="voc-card reveal">
+        <span class="voc-quote-icon">"</span>
+        <span class="voc-tag">Anxiety</span>
+        <div class="voc-stars"><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span></div>
+        <p class="voc-text">"I used to have panic attacks before every presentation at work. After 8 sessions with my Aashva therapist, <strong>I gave a 200-person talk last month</strong> and actually enjoyed it. The tools they gave me are things I use every single day now."</p>
+        <div class="voc-author">
+          <div class="voc-avatar" style="background:var(--sage-pale)">💼</div>
+          <div>
+            <div class="voc-name">Arjun M.</div>
+            <div class="voc-meta">28 · Product Manager · Bengaluru</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="voc-card reveal">
+        <span class="voc-quote-icon">"</span>
+        <span class="voc-tag">Family Pressure</span>
+        <div class="voc-stars"><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span></div>
+        <p class="voc-text">"My parents have been pushing me towards an arranged marriage I'm not ready for. I felt so guilty for saying no — like I was a bad daughter. Aashva helped me understand that <strong>having boundaries doesn't mean not loving your family</strong>. That one shift changed everything."</p>
+        <div class="voc-author">
+          <div class="voc-avatar" style="background:#f0ebff)">🌻</div>
+          <div>
+            <div class="voc-name">Ananya P.</div>
+            <div class="voc-meta">26 · Software Engineer · Hyderabad</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="voc-card reveal">
+        <span class="voc-quote-icon">"</span>
+        <span class="voc-tag">Grief & Loss</span>
+        <div class="voc-stars"><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span></div>
+        <p class="voc-text">"Lost my father suddenly last year. Everyone around me was so focused on the rituals and 'being strong' that I never actually processed the grief. My Aashva sessions gave me <strong>the first space where I was allowed to just miss him</strong>. Healing isn't linear but I finally feel like I'm moving."</p>
+        <div class="voc-author">
+          <div class="voc-avatar" style="background:#fff4e0">🕊️</div>
+          <div>
+            <div class="voc-name">Karan V.</div>
+            <div class="voc-meta">31 · Teacher · Delhi</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="voc-card reveal">
+        <span class="voc-quote-icon">"</span>
+        <span class="voc-tag">Starting Over</span>
+        <div class="voc-stars"><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span></div>
+        <p class="voc-text">"I quit a toxic startup at 27 with no backup plan. I was calling myself a failure every day. My therapist at Aashva helped me reframe the whole story — <strong>I didn't fail, I chose myself</strong>. Six months later I launched my own small business and I'm the happiest I've been in years."</p>
+        <div class="voc-author">
+          <div class="voc-avatar" style="background:var(--sage-pale)">🚀</div>
+          <div>
+            <div class="voc-name">Priyanka D.</div>
+            <div class="voc-meta">27 · Entrepreneur · Pune</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="voc-card reveal">
+        <span class="voc-quote-icon">"</span>
+        <span class="voc-tag">Loneliness</span>
+        <div class="voc-stars"><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span></div>
+        <p class="voc-text">"I moved cities for a new job and felt completely invisible for 8 months. My Aashva therapist didn't just validate my loneliness — she helped me understand <strong>why I was struggling to connect and what to do about it</strong>. I actually have real friendships now. Feels like a miracle."</p>
+        <div class="voc-author">
+          <div class="voc-avatar" style="background:var(--crimson-pale)">🌍</div>
+          <div>
+            <div class="voc-name">Shreya K.</div>
+            <div class="voc-meta">25 · UX Designer · Chennai</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="voc-card reveal">
+        <span class="voc-quote-icon">"</span>
+        <span class="voc-tag">Relationships</span>
+        <div class="voc-stars"><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span></div>
+        <p class="voc-text">"My husband and I were on the verge of separation. We tried Aashva couples sessions almost as a last resort. Three months in, we actually <strong>talk now — like really talk</strong>. We're not perfect but we're choosing each other again. This service literally saved my marriage."</p>
+        <div class="voc-author">
+          <div class="voc-avatar" style="background:#fff0f5">💑</div>
+          <div>
+            <div class="voc-name">Meera & Rohit T.</div>
+            <div class="voc-meta">30 & 33 · Couple · Jaipur</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="voc-card reveal">
+        <span class="voc-quote-icon">"</span>
+        <span class="voc-tag">Student Stress</span>
+        <div class="voc-stars"><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span></div>
+        <p class="voc-text">"UPSC prep had broken me. I was studying 14 hours a day and still felt like I was failing. Aashva helped me see that <strong>I had tied my entire worth to one exam</strong>. I still study hard — but I'm a person again, not just a preparation machine."</p>
+        <div class="voc-author">
+          <div class="voc-avatar" style="background:var(--sage-pale)">📚</div>
+          <div>
+            <div class="voc-name">Vikram N.</div>
+            <div class="voc-meta">23 · UPSC Aspirant · Lucknow</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="voc-card reveal">
+        <span class="voc-quote-icon">"</span>
+        <span class="voc-tag">Self-Worth</span>
+        <div class="voc-stars"><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span></div>
+        <p class="voc-text">"I grew up being told I was too sensitive, too much, too emotional. I genuinely believed something was wrong with me. My Aashva therapist spent weeks helping me understand that <strong>my sensitivity is a gift, not a flaw</strong>. I've never felt more at home in my own skin."</p>
+        <div class="voc-author">
+          <div class="voc-avatar" style="background:var(--crimson-pale)">🌷</div>
+          <div>
+            <div class="voc-name">Nisha R.</div>
+            <div class="voc-meta">22 · College Student · Kolkata</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end voc-grid -->
+
+    <!-- Bottom trust strip -->
+    <div class="voc-bottom reveal">
+      <div class="voc-bottom-item">
+        <span class="vb-icon">⭐</span>
+        <div class="vb-text">
+          <strong>4.8 / 5.0</strong>
+          <span>Average rating</span>
+        </div>
+      </div>
+      <div style="width:1px;height:36px;background:var(--border)"></div>
+      <div class="voc-bottom-item">
+        <span class="vb-icon">👥</span>
+        <div class="vb-text">
+          <strong>500+ customers</strong>
+          <span>Across India</span>
+        </div>
+      </div>
+      <div style="width:1px;height:36px;background:var(--border)"></div>
+      <div class="voc-bottom-item">
+        <span class="vb-icon">💚</span>
+        <div class="vb-text">
+          <strong>93% say</strong>
+          <span>They'd recommend Aashva</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- INTAKE QUESTIONNAIRE -->
+<section id="intake" style="background:var(--ink);padding:90px 5vw;">
+<style>
+  /* ── INTAKE ── */
+  .intake-wrap {
+    max-width: 820px; margin: 0 auto;
+  }
+  .intake-progress-bar-outer {
+    height: 6px; background: rgba(255,255,255,.12);
+    border-radius: 100px; margin-bottom: 40px; overflow: hidden;
+  }
+  .intake-progress-bar-inner {
+    height: 100%; border-radius: 100px;
+    background: linear-gradient(90deg, var(--crimson), var(--sage));
+    transition: width .45s cubic-bezier(.4,0,.2,1);
+  }
+  .intake-step { display: none; animation: fadeUp .4s ease both; }
+  .intake-step.active { display: block; }
+
+  .intake-q-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--sage-light);
+    margin-bottom: 10px; display: block;
+  }
+  .intake-q-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 3vw, 34px); color: #fff;
+    line-height: 1.25; margin-bottom: 8px;
+  }
+  .intake-q-hint {
+    font-size: 14px; color: rgba(255,251,245,.5);
+    margin-bottom: 30px; line-height: 1.5;
+  }
+
+  /* Option chips */
+  .intake-options {
+    display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 10px;
+  }
+  .intake-opt {
+    padding: 12px 20px; border-radius: 100px;
+    border: 1.5px solid rgba(255,255,255,.15);
+    background: rgba(255,255,255,.06);
+    color: rgba(255,251,245,.85); font-size: 14px; font-weight: 500;
+    cursor: pointer; transition: all .2s;
+    user-select: none;
+  }
+  .intake-opt:hover { border-color: var(--sage-light); color: #fff; background: rgba(82,183,136,.12); }
+  .intake-opt.selected { background: var(--sage); border-color: var(--sage); color: #fff; box-shadow: 0 4px 16px var(--shadow-green); }
+  .intake-opt.selected-red { background: var(--crimson); border-color: var(--crimson); color: #fff; box-shadow: 0 4px 16px var(--shadow-red); }
+
+  /* Slider */
+  .intake-slider-wrap { margin-bottom: 10px; }
+  .intake-slider {
+    -webkit-appearance: none; width: 100%; height: 6px;
+    border-radius: 100px; background: rgba(255,255,255,.15); outline: none;
+    cursor: pointer;
+  }
+  .intake-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 24px; height: 24px;
+    border-radius: 50%; background: var(--sage); cursor: pointer;
+    box-shadow: 0 0 0 4px rgba(82,183,136,.25);
+    transition: transform .15s;
+  }
+  .intake-slider::-webkit-slider-thumb:hover { transform: scale(1.15); }
+  .slider-labels { display: flex; justify-content: space-between; margin-top: 10px; }
+  .slider-labels span { font-size: 12px; color: rgba(255,251,245,.45); }
+  .slider-value {
+    text-align: center; margin-top: 14px;
+    font-family: 'Playfair Display', serif;
+    font-size: 42px; font-weight: 900; color: #fff; line-height: 1;
+  }
+  .slider-value-label { font-size: 13px; color: var(--sage-light); margin-top: 4px; text-align: center; }
+
+  /* Text input */
+  .intake-input, .intake-textarea {
+    width: 100%; padding: 16px 20px;
+    background: rgba(255,255,255,.07);
+    border: 1.5px solid rgba(255,255,255,.14);
+    border-radius: 16px; color: #fff;
+    font-family: 'DM Sans', sans-serif; font-size: 15px;
+    outline: none; transition: border .2s, box-shadow .2s;
+  }
+  .intake-input::placeholder, .intake-textarea::placeholder { color: rgba(255,251,245,.35); }
+  .intake-input:focus, .intake-textarea:focus {
+    border-color: var(--sage-light);
+    box-shadow: 0 0 0 3px rgba(82,183,136,.15);
+  }
+  .intake-textarea { resize: vertical; min-height: 100px; }
+  .intake-input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+
+  /* Nav buttons */
+  .intake-nav { display: flex; align-items: center; justify-content: space-between; margin-top: 36px; }
+  .intake-btn-back {
+    background: transparent; border: 1.5px solid rgba(255,255,255,.2);
+    color: rgba(255,251,245,.6); padding: 13px 24px; border-radius: 100px;
+    font-size: 14px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif;
+    transition: all .2s;
+  }
+  .intake-btn-back:hover { border-color: rgba(255,255,255,.4); color: #fff; }
+  .intake-btn-next {
+    background: var(--sage); color: #fff;
+    border: none; padding: 14px 32px; border-radius: 100px;
+    font-size: 15px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif;
+    box-shadow: 0 6px 22px var(--shadow-green);
+    display: flex; align-items: center; gap: 10px;
+    transition: all .25s;
+  }
+  .intake-btn-next:hover { background: var(--sage-light); transform: translateY(-2px); }
+  .intake-step-counter { font-size: 13px; color: rgba(255,251,245,.4); }
+
+  /* Success screen */
+  #intake-success {
+    display: none; text-align: center; padding: 40px 20px;
+    animation: fadeUp .5s ease both;
+  }
+  .success-icon { font-size: 64px; margin-bottom: 20px; display: block;
+    animation: bob 2s ease-in-out infinite; }
+  .success-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px; color: #fff; margin-bottom: 14px;
+  }
+  .success-sub { font-size: 16px; color: rgba(255,251,245,.65); line-height: 1.7; max-width: 500px; margin: 0 auto 32px; }
+  .success-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .success-wa {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: #25D366; color: #fff;
+    padding: 15px 28px; border-radius: 100px;
+    font-weight: 600; font-size: 15px; text-decoration: none;
+    box-shadow: 0 6px 24px rgba(37,211,102,.4);
+    transition: all .25s;
+  }
+  .success-wa:hover { transform: translateY(-2px); }
+  .success-mail {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,.1); color: #fff;
+    padding: 15px 28px; border-radius: 100px;
+    font-weight: 600; font-size: 15px; text-decoration: none;
+    border: 1.5px solid rgba(255,255,255,.2);
+    transition: all .25s;
+  }
+  .success-mail:hover { background: rgba(255,255,255,.18); }
+
+  @media (max-width: 620px) {
+    .intake-input-row { grid-template-columns: 1fr; }
+  }
+</style>
+
+  <div class="intake-wrap">
+
+    <!-- Header -->
+    <div style="text-align:center;margin-bottom:50px" class="reveal">
+      <span class="section-label" style="color:var(--sage-light)">Before Your First Session</span>
+      <h2 class="section-title" style="color:#fff;max-width:600px;margin:0 auto 14px">Help us understand <em>you</em><br/>before we meet.</h2>
+      <p style="font-size:15px;color:rgba(255,251,245,.6);line-height:1.7;max-width:520px;margin:0 auto">
+        These 12 questions take 3–4 minutes. Your answers go directly to your therapist so your very first session skips the small talk and gets straight to what matters.
+      </p>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="intake-progress-bar-outer reveal">
+      <div class="intake-progress-bar-inner" id="intakeProgress" style="width:8%"></div>
+    </div>
+
+    <!-- FORM STEPS -->
+    <div id="intakeForm" class="reveal">
+
+      <!-- Step 1: Name & Contact -->
+      <div class="intake-step active" data-step="1">
+        <span class="intake-q-label">About You · 1 of 12</span>
+        <h3 class="intake-q-title">Let's start with the basics.</h3>
+        <p class="intake-q-hint">This helps us personalise your experience from day one.</p>
+        <div class="intake-input-row">
+          <input class="intake-input" id="iq-name" placeholder="Your full name" type="text"/>
+          <input class="intake-input" id="iq-age" placeholder="Your age" type="number" min="13" max="80"/>
+        </div>
+        <div class="intake-input-row">
+          <input class="intake-input" id="iq-phone" placeholder="WhatsApp number (+91...)" type="tel"/>
+          <input class="intake-input" id="iq-email" placeholder="Email address" type="email"/>
+        </div>
+        <div class="intake-nav">
+          <span class="intake-step-counter">Step 1 of 12</span>
+          <button class="intake-btn-next" onclick="intakeNext(1)">Continue <span>→</span></button>
+        </div>
+      </div>
+
+      <!-- Step 2: City & Gender -->
+      <div class="intake-step" data-step="2">
+        <span class="intake-q-label">Context · 2 of 12</span>
+        <h3 class="intake-q-title">Where are you, and how do you identify?</h3>
+        <p class="intake-q-hint">Helps us match you with the right therapist for your context.</p>
+        <input class="intake-input" id="iq-city" placeholder="City you live in (e.g. Delhi, Mumbai...)" type="text" style="margin-bottom:14px"/>
+        <div class="intake-options" id="opts-gender">
+          <div class="intake-opt" onclick="selectOpt(this,'gender')">Male</div>
+          <div class="intake-opt" onclick="selectOpt(this,'gender')">Female</div>
+          <div class="intake-opt" onclick="selectOpt(this,'gender')">Non-binary</div>
+          <div class="intake-opt" onclick="selectOpt(this,'gender')">Prefer not to say</div>
+        </div>
+        <div class="intake-nav">
+          <button class="intake-btn-back" onclick="intakeBack(2)">← Back</button>
+          <span class="intake-step-counter">Step 2 of 12</span>
+          <button class="intake-btn-next" onclick="intakeNext(2)">Continue <span>→</span></button>
+        </div>
+      </div>
+
+      <!-- Step 3: Primary concern -->
+      <div class="intake-step" data-step="3">
+        <span class="intake-q-label">Your World · 3 of 12</span>
+        <h3 class="intake-q-title">What's brought you here today?</h3>
+        <p class="intake-q-hint">Pick all that feel true right now. No wrong answers.</p>
+        <div class="intake-options" id="opts-concern">
+          <div class="intake-opt" onclick="toggleOpt(this)">💔 Breakup / Heartbreak</div>
+          <div class="intake-opt" onclick="toggleOpt(this)">😰 Anxiety / Overthinking</div>
+          <div class="intake-opt" onclick="toggleOpt(this)">😔 Sadness / Depression</div>
+          <div class="intake-opt" onclick="toggleOpt(this)">🌑 Loneliness / Isolation</div>
+          <div class="intake-opt" onclick="toggleOpt(this)">🏠 Family Conflict</div>
+          <div class="intake-opt" onclick="toggleOpt(this)">💼 Work / Career Stress</div>
+          <div class="intake-opt" onclick="toggleOpt(this)">🕯️ Grief / Loss</div>
+          <div class="intake-opt" onclick="toggleOpt(this)">🔄 Life Transition / Restart</div>
+          <div class="intake-opt" onclick="toggleOpt(this)">😶 Low Self-Worth</div>
+          <div class="intake-opt" onclick="toggleOpt(this)">😴 Sleep / Physical Health</div>
+          <div class="intake-opt" onclick="toggleOpt(this)">🎓 Academic Pressure</div>
+          <div class="intake-opt" onclick="toggleOpt(this)">🤷 Not Sure — Just Off</div>
+        </div>
+        <div class="intake-nav">
+          <button class="intake-btn-back" onclick="intakeBack(3)">← Back</button>
+          <span class="intake-step-counter">Step 3 of 12</span>
+          <button class="intake-btn-next" onclick="intakeNext(3)">Continue <span>→</span></button>
+        </div>
+      </div>
+
+      <!-- Step 4: Duration -->
+      <div class="intake-step" data-step="4">
+        <span class="intake-q-label">Timeline · 4 of 12</span>
+        <h3 class="intake-q-title">How long have you been feeling this way?</h3>
+        <p class="intake-q-hint">This helps your therapist understand what you're working through.</p>
+        <div class="intake-options" id="opts-duration">
+          <div class="intake-opt" onclick="selectOpt(this,'duration')">A few days</div>
+          <div class="intake-opt" onclick="selectOpt(this,'duration')">A few weeks</div>
+          <div class="intake-opt" onclick="selectOpt(this,'duration')">1–3 months</div>
+          <div class="intake-opt" onclick="selectOpt(this,'duration')">3–6 months</div>
+          <div class="intake-opt" onclick="selectOpt(this,'duration')">More than 6 months</div>
+          <div class="intake-opt" onclick="selectOpt(this,'duration')">Years — it's always been there</div>
+        </div>
+        <div class="intake-nav">
+          <button class="intake-btn-back" onclick="intakeBack(4)">← Back</button>
+          <span class="intake-step-counter">Step 4 of 12</span>
+          <button class="intake-btn-next" onclick="intakeNext(4)">Continue <span>→</span></button>
+        </div>
+      </div>
+
+      <!-- Step 5: Distress scale -->
+      <div class="intake-step" data-step="5">
+        <span class="intake-q-label">Wellbeing Check · 5 of 12</span>
+        <h3 class="intake-q-title">On a scale of 1–10, how much is this affecting your daily life?</h3>
+        <p class="intake-q-hint">1 = barely noticeable, 10 = completely overwhelming</p>
+        <div class="intake-slider-wrap">
+          <input type="range" min="1" max="10" value="5" class="intake-slider" id="iq-distress"
+            oninput="updateSlider('iq-distress','distress-val','distress-lbl',distressLabels)"/>
+          <div class="slider-labels"><span>1 — Mild</span><span>10 — Overwhelming</span></div>
+          <div class="slider-value" id="distress-val">5</div>
+          <div class="slider-value-label" id="distress-lbl">Noticeably affecting some areas</div>
+        </div>
+        <div class="intake-nav">
+          <button class="intake-btn-back" onclick="intakeBack(5)">← Back</button>
+          <span class="intake-step-counter">Step 5 of 12</span>
+          <button class="intake-btn-next" onclick="intakeNext(5)">Continue <span>→</span></button>
+        </div>
+      </div>
+
+      <!-- Step 6: Sleep & energy -->
+      <div class="intake-step" data-step="6">
+        <span class="intake-q-label">Physical Signals · 6 of 12</span>
+        <h3 class="intake-q-title">How has your sleep and energy been lately?</h3>
+        <p class="intake-q-hint">Mind and body are deeply connected — this gives your therapist the full picture.</p>
+        <div class="intake-options" id="opts-sleep">
+          <div class="intake-opt" onclick="selectOpt(this,'sleep')">😴 Sleeping too much, still exhausted</div>
+          <div class="intake-opt" onclick="selectOpt(this,'sleep')">😵 Can't sleep / mind won't stop</div>
+          <div class="intake-opt" onclick="selectOpt(this,'sleep')">⚡ Restless, wired but tired</div>
+          <div class="intake-opt" onclick="selectOpt(this,'sleep')">😐 Sleep is okay but energy is low</div>
+          <div class="intake-opt" onclick="selectOpt(this,'sleep')">✅ Sleeping fine actually</div>
+        </div>
+        <div class="intake-nav">
+          <button class="intake-btn-back" onclick="intakeBack(6)">← Back</button>
+          <span class="intake-step-counter">Step 6 of 12</span>
+          <button class="intake-btn-next" onclick="intakeNext(6)">Continue <span>→</span></button>
+        </div>
+      </div>
+
+      <!-- Step 7: Social life -->
+      <div class="intake-step" data-step="7">
+        <span class="intake-q-label">Connections · 7 of 12</span>
+        <h3 class="intake-q-title">How connected do you feel to the people around you?</h3>
+        <p class="intake-q-hint">Isolation patterns are often the first thing we work on together.</p>
+        <div class="intake-options" id="opts-social">
+          <div class="intake-opt" onclick="selectOpt(this,'social')">I've been withdrawing from everyone</div>
+          <div class="intake-opt" onclick="selectOpt(this,'social')">I'm around people but feel invisible</div>
+          <div class="intake-opt" onclick="selectOpt(this,'social')">A few close people, but I don't open up</div>
+          <div class="intake-opt" onclick="selectOpt(this,'social')">I have support but still feel alone inside</div>
+          <div class="intake-opt" onclick="selectOpt(this,'social')">Reasonably connected, just need tools</div>
+        </div>
+        <div class="intake-nav">
+          <button class="intake-btn-back" onclick="intakeBack(7)">← Back</button>
+          <span class="intake-step-counter">Step 7 of 12</span>
+          <button class="intake-btn-next" onclick="intakeNext(7)">Continue <span>→</span></button>
+        </div>
+      </div>
+
+      <!-- Step 8: Tried before -->
+      <div class="intake-step" data-step="8">
+        <span class="intake-q-label">History · 8 of 12</span>
+        <h3 class="intake-q-title">Have you tried therapy or counselling before?</h3>
+        <p class="intake-q-hint">There's no right answer — just helps us calibrate our approach.</p>
+        <div class="intake-options" id="opts-history">
+          <div class="intake-opt" onclick="selectOpt(this,'history')">No — this is my first time</div>
+          <div class="intake-opt" onclick="selectOpt(this,'history')">Tried once but it didn't stick</div>
+          <div class="intake-opt" onclick="selectOpt(this,'history')">Yes, on and off — mixed results</div>
+          <div class="intake-opt" onclick="selectOpt(this,'history')">Yes, and it helped — looking for more</div>
+          <div class="intake-opt" onclick="selectOpt(this,'history')">I've read / researched a lot but never tried</div>
+        </div>
+        <div class="intake-nav">
+          <button class="intake-btn-back" onclick="intakeBack(8)">← Back</button>
+          <span class="intake-step-counter">Step 8 of 12</span>
+          <button class="intake-btn-next" onclick="intakeNext(8)">Continue <span>→</span></button>
+        </div>
+      </div>
+
+      <!-- Step 9: Biggest fear about therapy -->
+      <div class="intake-step" data-step="9">
+        <span class="intake-q-label">Honesty · 9 of 12</span>
+        <h3 class="intake-q-title">What's your biggest worry about starting therapy?</h3>
+        <p class="intake-q-hint">Naming the fear is often the first step to dissolving it.</p>
+        <div class="intake-options" id="opts-fear">
+          <div class="intake-opt" onclick="selectOpt(this,'fear')">Being judged or misunderstood</div>
+          <div class="intake-opt" onclick="selectOpt(this,'fear')">It won't actually work for me</div>
+          <div class="intake-opt" onclick="selectOpt(this,'fear')">Family / people finding out</div>
+          <div class="intake-opt" onclick="selectOpt(this,'fear')">Not knowing what to say</div>
+          <div class="intake-opt" onclick="selectOpt(this,'fear')">The cost / affordability</div>
+          <div class="intake-opt" onclick="selectOpt(this,'fear')">I don't really have one — I'm ready</div>
+        </div>
+        <div class="intake-nav">
+          <button class="intake-btn-back" onclick="intakeBack(9)">← Back</button>
+          <span class="intake-step-counter">Step 9 of 12</span>
+          <button class="intake-btn-next" onclick="intakeNext(9)">Continue <span>→</span></button>
+        </div>
+      </div>
+
+      <!-- Step 10: Session preference -->
+      <div class="intake-step" data-step="10">
+        <span class="intake-q-label">Format · 10 of 12</span>
+        <h3 class="intake-q-title">How would you prefer your sessions?</h3>
+        <p class="intake-q-hint">We'll match you based on what feels most comfortable.</p>
+        <div class="intake-options" id="opts-format">
+          <div class="intake-opt" onclick="selectOpt(this,'format')">📹 Video call — face to face</div>
+          <div class="intake-opt" onclick="selectOpt(this,'format')">📞 Voice call only — camera off</div>
+          <div class="intake-opt" onclick="selectOpt(this,'format')">💬 Chat / text — I express better in writing</div>
+          <div class="intake-opt" onclick="selectOpt(this,'format')">🤷 No preference — just get me started</div>
+        </div>
+        <p style="font-size:13px;color:rgba(255,251,245,.4);margin-top:16px">When works best for you?</p>
+        <div class="intake-options" id="opts-timing" style="margin-top:10px">
+          <div class="intake-opt" onclick="toggleOpt(this)">🌅 Morning (7–11am)</div>
+          <div class="intake-opt" onclick="toggleOpt(this)">☀️ Afternoon (11am–4pm)</div>
+          <div class="intake-opt" onclick="toggleOpt(this)">🌆 Evening (4–8pm)</div>
+          <div class="intake-opt" onclick="toggleOpt(this)">🌙 Night (8pm+)</div>
+          <div class="intake-opt" onclick="toggleOpt(this)">📅 Weekends only</div>
+        </div>
+        <div class="intake-nav">
+          <button class="intake-btn-back" onclick="intakeBack(10)">← Back</button>
+          <span class="intake-step-counter">Step 10 of 12</span>
+          <button class="intake-btn-next" onclick="intakeNext(10)">Continue <span>→</span></button>
+        </div>
+      </div>
+
+      <!-- Step 11: Goal -->
+      <div class="intake-step" data-step="11">
+        <span class="intake-q-label">Your Vision · 11 of 12</span>
+        <h3 class="intake-q-title">What does "feeling better" look like for you?</h3>
+        <p class="intake-q-hint">Pick what resonates most. This is your personal north star.</p>
+        <div class="intake-options" id="opts-goal">
+          <div class="intake-opt" onclick="toggleOpt(this)">😌 Waking up without dread</div>
+          <div class="intake-opt" onclick="toggleOpt(this)">💬 Being able to open up to people</div>
+          <div class="intake-opt" onclick="toggleOpt(this)">🎯 Focus and show up fully at work</div>
+          <div class="intake-opt" onclick="toggleOpt(this)">❤️ Fix or understand my relationship</div>
+          <div class="intake-opt" onclick="toggleOpt(this)">🧘 Quiet the noise in my head</div>
+          <div class="intake-opt" onclick="toggleOpt(this)">🪞 Actually like myself again</div>
+          <div class="intake-opt" onclick="toggleOpt(this)">🌱 Feel hope about the future</div>
+          <div class="intake-opt" onclick="toggleOpt(this)">🏠 Set boundaries with family</div>
+        </div>
+        <div class="intake-nav">
+          <button class="intake-btn-back" onclick="intakeBack(11)">← Back</button>
+          <span class="intake-step-counter">Step 11 of 12</span>
+          <button class="intake-btn-next" onclick="intakeNext(11)">Continue <span>→</span></button>
+        </div>
+      </div>
+
+      <!-- Step 12: Anything else -->
+      <div class="intake-step" data-step="12">
+        <span class="intake-q-label">Final Word · 12 of 12</span>
+        <h3 class="intake-q-title">Is there anything else your therapist should know?</h3>
+        <p class="intake-q-hint">A specific event, something you've never told anyone, a fear — anything at all. This is safe.</p>
+        <textarea class="intake-textarea" id="iq-extra" placeholder="Write freely here — your therapist reads every word before your session..."></textarea>
+        <div style="margin-top:20px;padding:16px;background:rgba(82,183,136,.1);border-radius:14px;border:1px solid rgba(82,183,136,.2)">
+          <p style="font-size:13px;color:var(--sage-light);line-height:1.6">🔒 <strong>Your privacy is protected.</strong> This information is shared only with your assigned therapist and is never stored publicly or shared with third parties.</p>
+        </div>
+        <div class="intake-nav">
+          <button class="intake-btn-back" onclick="intakeBack(12)">← Back</button>
+          <span class="intake-step-counter">Step 12 of 12</span>
+          <button class="intake-btn-next" id="submitIntakeBtn" onclick="submitIntake()" style="background:var(--crimson);box-shadow:0 6px 22px var(--shadow-red)">
+            <span>🌿</span> Submit & Get My Session
+          </button>
+        </div>
+      </div>
+
+    </div><!-- end intakeForm -->
+
+    <!-- Success Screen -->
+    <div id="intake-success">
+      <span class="success-icon">🌿</span>
+      <h2 class="success-title">You just did something brave.</h2>
+      <p class="success-sub">Your answers are on their way to your therapist. We'll reach out within a few hours to confirm your <strong style="color:var(--sage-light)">free first session</strong>. Meanwhile, say hello on WhatsApp or drop us a line — we'd love to hear from you.</p>
+      <div class="success-actions">
+        <a id="success-wa-link" href="#" target="_blank" class="success-wa">
+          📱 Say hi on WhatsApp
+        </a>
+        <a id="success-mail-link" href="#" class="success-mail">
+          ✉️ Send us an email
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <div class="logo-icon">A</div>
+          <div>
+            <span class="logo-text">Aashva Health</span>
+            <span class="logo-sub" style="color:var(--sage-light)">a SALP creation</span>
+          </div>
+        </a>
+        <p>From surviving to thriving — Aashva is your friendly mental health companion, built with love for India's real people and real struggles.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#">Individual Therapy</a>
+        <a href="#">Couples Counselling</a>
+        <a href="#">Career Coaching</a>
+        <a href="#">Anxiety & Stress</a>
+        <a href="#">Student Wellness</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About Aashva</a>
+        <a href="#">Our Therapists</a>
+        <a href="#">Blog</a>
+        <a href="#">FAQs</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="https://wa.me/919211705027" target="_blank">📱 WhatsApp</a>
+        <a href="mailto:getsalpoffical@gmail.com">✉️ Email</a>
+        <a href="#">📷 Instagram</a>
+        <a href="#">🐦 Twitter/X</a>
+        <a href="#">💼 LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Aashva Health. All rights reserved.</span>
+      <a href="#" class="salp-badge">⚡ Built by SALP</a>
+      <span style="color:rgba(255,251,245,.35)">Made with ❤️ for India's mental wellness</span>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY WHATSAPP -->
+<a href="https://wa.me/919211705027?text=Hi%20Aashva%2C%20I%20want%20to%20avail%20my%20first%20free%20session%20with%20the%20professionals!" target="_blank" class="sticky-wa">
+  <span class="wa-s-icon">📱</span> Free Session on WhatsApp
+</a>
+
+<script>
+/* ─── NAV ─── */
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  // Active nav highlight
+  const sections = ['why','real-talk','assessment','resources','professionals','friend','testimonials','intake','contact'];
+  let current = '';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 100) current = id;
+  });
+  document.querySelectorAll('.nav-center a').forEach(a => {
+    a.classList.toggle('nav-active', a.getAttribute('href') === '#' + current);
+  });
+});
+
+function toggleDrawer() {
+  const d = document.getElementById('navDrawer');
+  const h = document.getElementById('navHamburger');
+  d.classList.toggle('open');
+  h.classList.toggle('open');
+}
+function closeDrawer() {
+  document.getElementById('navDrawer').classList.remove('open');
+  document.getElementById('navHamburger').classList.remove('open');
+}
+
+/* ─── SCROLL REVEAL ─── */
+const reveals = document.querySelectorAll('.reveal');
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); } });
+}, { threshold: 0.10 });
+reveals.forEach(r => revObs.observe(r));
+
+/* ─── RESOURCE TABS ─── */
+function showTab(tab) {
+  document.getElementById('books-tab').style.display = tab === 'books' ? 'grid' : 'none';
+  document.getElementById('videos-tab').style.display = tab === 'videos' ? 'grid' : 'none';
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+/* ─── CONTACT FORM ─── */
+function submitForm() {
+  const name   = document.getElementById('f-name').value.trim();
+  const phone  = document.getElementById('f-phone').value.trim();
+  const reason = document.getElementById('f-reason').value;
+  const msg    = document.getElementById('f-msg').value.trim();
+  if (!name) { alert('Please enter your name 😊'); return; }
+  let text = `Hi Aashva, I want to avail my first free session with the professionals!\n\nName: ${name}`;
+  if (phone)  text += `\nPhone: ${phone}`;
+  if (reason) text += `\nTopic: ${reason}`;
+  if (msg)    text += `\nNote: ${msg}`;
+  window.open('https://wa.me/919211705027?text=' + encodeURIComponent(text), '_blank');
+}
+
+/* ─────────────────────────────────────────────────────
+   SELF-ASSESSMENT TEST
+   10 questions, each 0-3 scale → max 30
+   Areas: Mood, Anxiety, Energy, Social, Outlook
+───────────────────────────────────────────────────── */
+const assessQuestions = [
+  {
+    q: "Over the past two weeks, how often have you felt down, low, or hopeless?",
+    hint: "Think about your emotional baseline — not just the bad days.",
+    area: "Mood",
+    opts: [
+      { label: "Not at all", val: 0 },
+      { label: "A few days", val: 1 },
+      { label: "More than half the days", val: 2 },
+      { label: "Nearly every day", val: 3 }
+    ]
+  },
+  {
+    q: "How often do you find yourself worrying excessively and struggling to stop?",
+    hint: "Includes overthinking conversations, future events, or things outside your control.",
+    area: "Anxiety",
+    opts: [
+      { label: "Rarely — I can let things go", val: 0 },
+      { label: "Sometimes, but I manage", val: 1 },
+      { label: "Often, it drains a lot of energy", val: 2 },
+      { label: "Almost constantly — my mind never rests", val: 3 }
+    ]
+  },
+  {
+    q: "How would you rate your energy and motivation to do everyday things?",
+    hint: "This includes work, hobbies, chores — things that used to feel normal.",
+    area: "Energy",
+    opts: [
+      { label: "Good — I feel capable and motivated", val: 0 },
+      { label: "Okay, some days harder than others", val: 1 },
+      { label: "Low — getting started is a struggle", val: 2 },
+      { label: "Very low — even small tasks feel impossible", val: 3 }
+    ]
+  },
+  {
+    q: "How connected do you feel to the people in your life right now?",
+    hint: "Friends, family, colleagues — the sense that people understand you.",
+    area: "Social",
+    opts: [
+      { label: "Very connected — I feel seen and heard", val: 0 },
+      { label: "Somewhat connected but keeping distance", val: 1 },
+      { label: "Quite isolated even around others", val: 2 },
+      { label: "Completely alone — no one really gets it", val: 3 }
+    ]
+  },
+  {
+    q: "When you think about the future, what feeling comes up most?",
+    hint: "Your gut instinct, not the logical part.",
+    area: "Outlook",
+    opts: [
+      { label: "Hopeful — things can get better", val: 0 },
+      { label: "Uncertain — I'm not sure where things go", val: 1 },
+      { label: "Anxious — a lot could go wrong", val: 2 },
+      { label: "Hopeless — I struggle to imagine good things", val: 3 }
+    ]
+  },
+  {
+    q: "How often do physical symptoms show up — like chest tightness, headaches, or poor sleep?",
+    hint: "Emotional stress often lives in the body before we consciously notice it.",
+    area: "Anxiety",
+    opts: [
+      { label: "Rarely or never", val: 0 },
+      { label: "Occasionally", val: 1 },
+      { label: "Frequently — it's affecting my routine", val: 2 },
+      { label: "Almost daily — it's really impacting me", val: 3 }
+    ]
+  },
+  {
+    q: "How much have you been enjoying things you used to love?",
+    hint: "Hobbies, food, music, spending time with people — any activities that used to bring joy.",
+    area: "Mood",
+    opts: [
+      { label: "As much as always", val: 0 },
+      { label: "A little less than before", val: 1 },
+      { label: "Significantly less — it feels flat", val: 2 },
+      { label: "Barely at all — joy feels distant", val: 3 }
+    ]
+  },
+  {
+    q: "How do you talk to yourself when things go wrong?",
+    hint: "The inner voice that reacts when you make a mistake or face a setback.",
+    area: "Outlook",
+    opts: [
+      { label: "Kindly — I don't beat myself up", val: 0 },
+      { label: "Sometimes harshly, but I recover", val: 1 },
+      { label: "Often critical — I'm my own worst enemy", val: 2 },
+      { label: "Very harshly — I feel like a failure often", val: 3 }
+    ]
+  },
+  {
+    q: "How much has your work, studies, or daily responsibilities been affected?",
+    hint: "Concentration, performance, showing up consistently.",
+    area: "Energy",
+    opts: [
+      { label: "Not at all — I'm managing well", val: 0 },
+      { label: "Slightly — minor dips here and there", val: 1 },
+      { label: "Noticeably — it's harder to stay on top", val: 2 },
+      { label: "Significantly — I'm falling behind", val: 3 }
+    ]
+  },
+  {
+    q: "If you had to honestly rate how you're doing overall right now?",
+    hint: "Trust your gut. There are no right or wrong answers here.",
+    area: "Mood",
+    opts: [
+      { label: "Pretty good — I'm doing okay", val: 0 },
+      { label: "A bit off — not quite myself", val: 1 },
+      { label: "Struggling — more bad days than good", val: 2 },
+      { label: "Really not okay — I need support", val: 3 }
+    ]
+  }
+];
+
+const areaColors = { Mood:'#C0392B', Anxiety:'#6c5ce7', Energy:'#f39c12', Social:'#0984e3', Outlook:'#52B788' };
+let assessIdx = 0, assessScores = new Array(10).fill(-1), assessAreaScores = {};
+
+function buildDots() {
+  const d = document.getElementById('assessDots');
+  d.innerHTML = assessQuestions.map((_,i) =>
+    `<span id="dot${i}" class="${i===0?'active':''}"></span>`
+  ).join('');
+}
+
+function renderQ(idx) {
+  const q = assessQuestions[idx];
+  document.getElementById('assessQNum').textContent = `Question ${idx+1} of ${assessQuestions.length}`;
+  document.getElementById('assessQ').textContent = q.q;
+  document.getElementById('assessHint').textContent = q.hint;
+  document.getElementById('assessTrack').style.width = `${((idx+1)/assessQuestions.length)*100}%`;
+  document.getElementById('assessBack').style.visibility = idx === 0 ? 'hidden' : 'visible';
+  document.getElementById('assessStepLbl').textContent = 'Select an answer to continue';
+  document.getElementById('assessNext').disabled = assessScores[idx] === -1;
+  document.getElementById('assessNext').textContent = idx === assessQuestions.length-1 ? 'See My Result →' : 'Next →';
+
+  // dots
+  assessQuestions.forEach((_,i) => {
+    const dot = document.getElementById(`dot${i}`);
+    if (!dot) return;
+    dot.className = i < idx ? 'done' : i === idx ? 'active' : '';
+  });
+
+  // options
+  const optsHtml = q.opts.map((o,oi) => `
+    <div class="assess-opt${assessScores[idx]===oi?' chosen':''}" onclick="pickOpt(${oi})">
+      <div class="ao-radio"></div>
+      <span class="ao-text">${o.label}</span>
+    </div>`).join('');
+  document.getElementById('assessOpts').innerHTML = optsHtml;
+}
+
+function pickOpt(oi) {
+  assessScores[assessIdx] = oi;
+  document.querySelectorAll('.assess-opt').forEach((el,i) => el.classList.toggle('chosen', i===oi));
+  document.getElementById('assessNext').disabled = false;
+  document.getElementById('assessStepLbl').textContent = '✓ Answer recorded';
+}
+
+function assessNext() {
+  if (assessScores[assessIdx] === -1) return;
+  if (assessIdx < assessQuestions.length - 1) {
+    assessIdx++;
+    renderQ(assessIdx);
+  } else {
+    showResult();
+  }
+}
+function assessBack() {
+  if (assessIdx > 0) { assessIdx--; renderQ(assessIdx); }
+}
+
+function showResult() {
+  // Compute total and per-area
+  let total = 0;
+  const areaMap = {};
+  const areaCount = {};
+  assessQuestions.forEach((q,i) => {
+    const val = assessQuestions[i].opts[assessScores[i]]?.val || 0;
+    total += val;
+    areaMap[q.area] = (areaMap[q.area]||0) + val;
+    areaCount[q.area] = (areaCount[q.area]||0) + 1;
+  });
+
+  // Hide questions, show result
+  document.getElementById('assessQWrap').style.display = 'none';
+  const res = document.getElementById('assess-result');
+  res.style.display = 'block';
+
+  // Animate circle
+  const pct = total / 30;
+  const circ = 490;
+  setTimeout(() => {
+    document.getElementById('resultCircle').style.strokeDashoffset = circ - (circ * pct);
+  }, 100);
+
+  // Score number
+  document.getElementById('rScoreNum').textContent = total;
+
+  // Level
+  let level, levelColor, levelBg, title, msg;
+  if (total <= 7) {
+    level = '🌿 Doing Well'; levelColor = '#2D6A4F'; levelBg = '#D8F3DC';
+    title = "You're in a good space — let's keep it that way.";
+    msg = "Your responses suggest your mental wellbeing is relatively stable right now. That's wonderful. Proactive support — even when things are okay — is how people stay well and grow. Consider a session to build on your strengths.";
+  } else if (total <= 14) {
+    level = '🌤️ Mild Distress'; levelColor = '#B7791F'; levelBg = '#FEFCBF';
+    title = "You're coping, but something's weighing on you.";
+    msg = "There are clear signs of stress or emotional strain that deserve attention. This is exactly the right moment to talk to someone — before things get heavier. You don't have to wait until it becomes a crisis.";
+  } else if (total <= 21) {
+    level = '🌧️ Moderate Difficulty'; levelColor = '#C0392B'; levelBg = '#FDECEA';
+    title = "This is harder than it should be — you deserve real support.";
+    msg = "Your responses point to moderate distress that's affecting your daily life in multiple areas. This is a clear signal to reach out. Our therapists are warm, non-judgmental, and experienced in exactly what you're going through.";
+  } else {
+    level = '⛈️ High Distress'; levelColor = '#7B1D1D'; levelBg = '#FFE4E4';
+    title = "Please know — you don't have to carry this alone.";
+    msg = "Your score suggests significant emotional and psychological distress. We want you to know that reaching out takes courage and it works. Please connect with an Aashva therapist today — your first session is free.";
+  }
+
+  document.getElementById('rLevelPill').textContent = level;
+  document.getElementById('rLevelPill').style.cssText = `background:${levelBg};color:${levelColor}`;
+  document.getElementById('rTitle').textContent = title;
+  document.getElementById('rMsg').textContent = msg;
+
+  // Area bars
+  const areas = ['Mood','Anxiety','Energy','Social','Outlook'];
+  const maxPerArea = { Mood:9, Anxiety:6, Energy:6, Social:3, Outlook:6 };
+  document.getElementById('rAreas').innerHTML = areas.map(a => {
+    const sc = areaMap[a]||0;
+    const mx = maxPerArea[a]||3;
+    const pct = Math.round((sc/mx)*100);
+    const h = Math.max(16, Math.round((pct/100)*72));
+    return `<div class="ra-item">
+      <div class="ra-bar-wrap">
+        <div class="ra-bar" style="height:${h}px;background:${areaColors[a]};opacity:.85;"></div>
+      </div>
+      <div class="ra-label" style="color:${areaColors[a]};font-weight:600;">${a}</div>
+    </div>`;
+  }).join('');
+}
+
+function assessRetake() {
+  assessIdx = 0;
+  assessScores = new Array(10).fill(-1);
+  document.getElementById('assess-result').style.display = 'none';
+  document.getElementById('assessQWrap').style.display = 'block';
+  document.getElementById('assessTrack').style.width = '10%';
+  renderQ(0);
+}
+
+// Init assessment on load
+window.addEventListener('DOMContentLoaded', () => {
+  buildDots();
+  renderQ(0);
+});
+
+
+/* ─────────────────────────────────────────────────────
+   INTAKE FORM
+───────────────────────────────────────────────────── */
+const distressLabels = ['','Barely noticeable','Mild but present','Starting to affect things','Noticeably affecting some areas','Quite disruptive','Affecting most days','Hard to manage','Severely impacting daily life','Overwhelming','Completely overwhelming'];
+
+function updateSlider(sliderId, valId, lblId, labels) {
+  const v = document.getElementById(sliderId).value;
+  document.getElementById(valId).textContent = v;
+  document.getElementById(lblId).textContent = labels[v];
+  const el = document.getElementById(sliderId);
+  const pct = ((v-1)/9)*100;
+  el.style.background = `linear-gradient(90deg, var(--sage) ${pct}%, rgba(255,255,255,.15) ${pct}%)`;
+}
+
+function selectOpt(el, group) {
+  el.closest('.intake-options').querySelectorAll('.intake-opt').forEach(o => o.classList.remove('selected','selected-red'));
+  el.classList.add('selected');
+}
+function toggleOpt(el) {
+  el.classList.toggle('selected');
+}
+
+function intakeNext(step) {
+  if (step === 1) {
+    const name = document.getElementById('iq-name')?.value.trim();
+    const phone = document.getElementById('iq-phone')?.value.trim();
+    if (!name) { alert('Please enter your name 😊'); return; }
+    if (!phone) { alert('Please enter your WhatsApp number 📱'); return; }
+  }
+  goToStep(step + 1);
+}
+function intakeBack(step) { goToStep(step - 1); }
+
+function goToStep(n) {
+  document.querySelectorAll('.intake-step').forEach(s => s.classList.remove('active'));
+  const next = document.querySelector(`.intake-step[data-step="${n}"]`);
+  if (next) { next.classList.add('active'); updateIntakeProgress(n); window.scrollTo({top: document.getElementById('intake').offsetTop - 80, behavior:'smooth'}); }
+}
+
+function updateIntakeProgress(step) {
+  document.getElementById('intakeProgress').style.width = `${(step/12)*100}%`;
+}
+
+function submitIntake() {
+  const name   = document.getElementById('iq-name')?.value.trim() || '';
+  const phone  = document.getElementById('iq-phone')?.value.trim() || '';
+  const email  = document.getElementById('iq-email')?.value.trim() || '';
+  const city   = document.getElementById('iq-city')?.value.trim() || '';
+  const extra  = document.getElementById('iq-extra')?.value.trim() || '';
+
+  const getSelected = (id) => [...(document.getElementById(id)?.querySelectorAll('.selected,.intake-opt.selected') || [])].map(e=>e.textContent.trim()).join(', ');
+  const concern  = getSelected('opts-concern');
+  const duration = getSelected('opts-duration');
+  const sleep    = getSelected('opts-sleep');
+  const social   = getSelected('opts-social');
+  const history  = getSelected('opts-history');
+  const fear     = getSelected('opts-fear');
+  const format   = getSelected('opts-format');
+  const goal     = getSelected('opts-goal');
+  const distress = document.getElementById('iq-distress')?.value || '';
+
+  // Build WhatsApp message
+  const waText = `🌿 *Aashva Intake Form Submission*
+━━━━━━━━━━━━━━━━━━
+👤 *Name:* ${name}
+📱 *Phone:* ${phone}
+📧 *Email:* ${email}
+📍 *City:* ${city}
+━━━━━━━━━━━━━━━━━━
+🎯 *Primary Concern:* ${concern}
+⏳ *Duration:* ${duration}
+📊 *Distress Level:* ${distress}/10
+😴 *Sleep/Energy:* ${sleep}
+👥 *Social Connection:* ${social}
+📚 *Therapy History:* ${history}
+💭 *Biggest Fear:* ${fear}
+💻 *Session Format:* ${format}
+🌱 *Goals:* ${goal}
+━━━━━━━━━━━━━━━━━━
+📝 *Notes:* ${extra || 'None'}
+━━━━━━━━━━━━━━━━━━
+_Submitted via Aashva Health intake form_`;
+
+  // Build email body
+  const emailBody = `Aashva Intake Form\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nCity: ${city}\n\nPrimary Concern: ${concern}\nDuration: ${duration}\nDistress Level: ${distress}/10\nSleep/Energy: ${sleep}\nSocial: ${social}\nTherapy History: ${history}\nBiggest Fear: ${fear}\nSession Format: ${format}\nGoals: ${goal}\n\nNotes: ${extra}\n\nSubmitted via Aashva Health`;
+
+  // Show success
+  document.getElementById('intakeForm').style.display = 'none';
+  document.getElementById('intake-success').style.display = 'block';
+
+  // Personalise success links
+  const welcomeMsg = `Hi ${name}! 🌿\n\nWelcome to Aashva Health — we're so glad you're here.\n\nWe've received your intake form and your dedicated therapist is reviewing it right now. We'll reach out within a few hours to confirm your *free first session*.\n\nRemember: reaching out was the bravest step. The healing has already begun. 💚\n\n— Team Aashva`;
+  document.getElementById('success-wa-link').href = 'https://wa.me/919211705027?text=' + encodeURIComponent(welcomeMsg);
+  document.getElementById('success-mail-link').href = `mailto:getsalpoffical@gmail.com?subject=New Intake: ${name}&body=${encodeURIComponent(emailBody)}`;
+
+  // Auto-open WhatsApp after short delay
+  setTimeout(() => {
+    window.open('https://wa.me/919211705027?text=' + encodeURIComponent(waText), '_blank');
+  }, 800);
+
+  window.scrollTo({ top: document.getElementById('intake').offsetTop - 80, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
